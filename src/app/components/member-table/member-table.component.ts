@@ -6,6 +6,7 @@ import { Member } from '../../models/member';
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { MemberDataSource } from 'src/app/services/member.datasource';
 
 @Component({
   selector: 'app-member-table',
@@ -23,8 +24,8 @@ export class MemberTableComponent implements AfterViewInit, OnInit {
   constructor(private dataService: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    //var data = this.route.snapshot.data;
-    //console.info("this.route.snapshot.data", data);
+    var data = this.route.snapshot.data;
+    console.info("this.route.snapshot.data", data);
 
     this.dataSource = new MemberDataSource(this.dataService);
     this.dataSource.loadMembers();
@@ -46,34 +47,34 @@ export class MemberTableComponent implements AfterViewInit, OnInit {
   }
 }
 
-export class MemberDataSource extends DataSource<any>{
+// export class MemberDataSource extends DataSource<any>{
 
-  private membersSubject = new BehaviorSubject<Member[]>([]);
-  private loadingMembers = new BehaviorSubject<boolean>(false);
-  public loading$ = this.loadingMembers.asObservable();
+//   private membersSubject = new BehaviorSubject<Member[]>([]);
+//   private loadingMembers = new BehaviorSubject<boolean>(false);
+//   public loading$ = this.loadingMembers.asObservable();
 
-  constructor(private dataService: DataService) {
-    super();
-  }
+//   constructor(private dataService: DataService) {
+//     super();
+//   }
 
-  connect(collectionViewer: CollectionViewer): Observable<Member[]> {
-    return this.membersSubject.asObservable();
-  }
+//   connect(collectionViewer: CollectionViewer): Observable<Member[]> {
+//     return this.membersSubject.asObservable();
+//   }
 
-  disconnect(collectionViewer: CollectionViewer) {
-    this.loadingMembers.complete();
-    this.membersSubject.complete();
-  }
+//   disconnect(collectionViewer: CollectionViewer) {
+//     this.loadingMembers.complete();
+//     this.membersSubject.complete();
+//   }
 
-  loadMembers(filter: string = '', sortDirection: string = 'asc',
-    pageIndex: number = 0, pageSize: number = 10) {
+//   loadMembers(filter: string = '', sortDirection: string = 'asc',
+//     pageIndex: number = 0, pageSize: number = 10) {
 
-    this.loadingMembers.next(true);
+//     this.loadingMembers.next(true);
 
-    this.dataService.getMembers(filter, sortDirection,
-      pageIndex, pageSize).pipe(
-        catchError(err => of([])),
-        finalize(() => this.loadingMembers.next(false))
-      ).subscribe(members => this.membersSubject.next(members));
-  }
-}
+//     this.dataService.getMembers(filter, sortDirection,
+//       pageIndex, pageSize).pipe(
+//         catchError(() => of([])),
+//         finalize(() => this.loadingMembers.next(false))
+//       ).subscribe(members => this.membersSubject.next(members));
+//   }
+// }

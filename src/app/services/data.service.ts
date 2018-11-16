@@ -4,6 +4,7 @@ import { Member } from '../models/member';
 import { MatSnackBar } from '@angular/material';
 import { Subject, Observable, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+//import { of } from 'rxjs/observable/of';
 
 @Injectable({
   providedIn: 'root'

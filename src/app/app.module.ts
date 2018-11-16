@@ -15,8 +15,7 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatGridListModule,
-  MatProgressSpinnerModule,  
-  MatTableDataSource
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { MaterialPlayComponent } from './material-play/material-play.component';
@@ -34,6 +33,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'members', component: MemberDirectoryComponent },
+  //{ path: 'datatable', component: DataTableComponent },
 ];
 
 @NgModule({
@@ -69,8 +69,7 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     MatSortModule,
     MatGridListModule,
-    MatProgressSpinnerModule,
-    MatTableDataSource
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
