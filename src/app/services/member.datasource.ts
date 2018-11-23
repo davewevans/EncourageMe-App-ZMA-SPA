@@ -10,7 +10,7 @@ export class MemberDataSource extends DataSource<any>{
     public membersSubject = new BehaviorSubject<Member[]>([]);
     private loadingMembers = new BehaviorSubject<boolean>(false);
     public loading$ = this.loadingMembers.asObservable(); 
-    public    
+  
   
     constructor(private dataService: DataService) {
       super();
@@ -25,15 +25,15 @@ export class MemberDataSource extends DataSource<any>{
       this.membersSubject.complete();
     }
   
-    loadMembers(filter: string = '', sortDirection: string = 'asc',
-      pageIndex: number = 0, pageSize: number = 10) {
+    // loadMembers(filter: string = '', sortDirection: string = 'asc',
+    //   pageIndex: number = 0, pageSize: number = 10) {
   
-      this.loadingMembers.next(true);
+    //   this.loadingMembers.next(true);
   
-      this.dataService.getMembers(filter, sortDirection,
-        pageIndex, pageSize).pipe(
-          catchError(() => of([])),
-          finalize(() => this.loadingMembers.next(false))
-        ).subscribe(members => this.membersSubject.next(members));
-    }
+    //   this.dataService.getMembers(filter, sortDirection,
+    //     pageIndex, pageSize).pipe(
+    //       catchError(() => of([])),
+    //       finalize(() => this.loadingMembers.next(false))
+    //     ).subscribe(members => this.membersSubject.next(members));
+    // }
   }

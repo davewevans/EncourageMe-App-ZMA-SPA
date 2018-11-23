@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { PaginationService } from 'src/app/services/pagination.service';
+
 // import { Observable, Subject, throwError, of } from 'rxjs';
 // import { catchError, retry, map } from 'rxjs/operators';
 // import { Member } from '../../models/member';
@@ -24,9 +26,11 @@ export class MemberDirectoryComponent implements OnInit {
   // @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, 
+    private paginationService: PaginationService) { }
 
-  ngOnInit() {
+  ngOnInit() {   
+
     // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;   
 

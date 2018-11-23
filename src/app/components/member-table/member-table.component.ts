@@ -28,7 +28,8 @@ export class MemberTableComponent implements AfterViewInit, OnInit {
     console.info("this.route.snapshot.data", data);
 
     this.dataSource = new MemberDataSource(this.dataService);
-    this.dataSource.loadMembers();
+    //this.dataSource.loadMembers();
+    
   }
 
   ngAfterViewInit(): void {
@@ -42,8 +43,8 @@ export class MemberTableComponent implements AfterViewInit, OnInit {
   }
 
   loadMembersPage() {
-    this.dataSource.loadMembers('', 'asc',
-      this.paginator.pageIndex, this.paginator.pageSize);
+      //this.dataSource.loadMembers('', 'asc',
+      //this.paginator.pageIndex, this.paginator.pageSize);
   }
 }
 
