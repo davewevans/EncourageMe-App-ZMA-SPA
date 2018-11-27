@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { MemberDataSource } from '../../services/member.datasource';
-import { Member } from 'src/app/models/member';
+import { Member } from 'src/app/shared/models/member.model';
 import { DataService } from '../../services/data.service';
 import { Observable, of, BehaviorSubject, Subject, fromEvent } from 'rxjs';
 import { catchError, finalize, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -9,12 +9,13 @@ import { PaginationService } from '../../services/pagination.service';
 import { PageEvent } from '@angular/material';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { SendMessageDialogComponent } from '../send-message-dialog/send-message-dialog.component';
-import { ISendMessageFormData } from '../../interfaces/ISendMessageFormData';
+import { ISendMessageFormData } from '../../shared/interfaces/ISendMessageFormData';
 
 @Component({
   selector: 'app-members-grid',
   templateUrl: './members-grid.component.html',
-  styleUrls: ['./members-grid.component.scss']
+  styleUrls: ['./members-grid.component.scss'],
+  providers: [DataService, PaginationService]
 })
 export class MembersGridComponent implements OnInit {
 
@@ -28,7 +29,7 @@ export class MembersGridComponent implements OnInit {
   private loadingMembers = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingMembers.asObservable();
 
-  @ViewChild('input') input: ElementRef;
+  @ViewChild('searchInput') searchInput: ElementRef;
 
   constructor(private dataService: DataService,
     private paginationService: PaginationService, private dialog: MatDialog) { }
@@ -42,7 +43,7 @@ export class MembersGridComponent implements OnInit {
   ngAfterViewInit() {
 
     // server-side search
-    fromEvent(this.input.nativeElement, 'keyup')
+    fromEvent(this.searchInput.nativeElement, 'keyup')
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
@@ -58,7 +59,7 @@ export class MembersGridComponent implements OnInit {
 
     this.loadingMembers.next(true);
 
-    filter = filter == '' ? this.input.nativeElement.value : filter;
+    filter = filter == '' ? this.searchInput.nativeElement.value : filter;
 
     console.info("filter: " + filter);
     //console.info("page: " + this.paginationService.page);

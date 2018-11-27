@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { Observable, Subject, throwError, BehaviorSubject, of } from 'rxjs';
 import { catchError, retry, map, finalize, tap } from 'rxjs/operators';
-import { Member } from '../models/member';
+import { Member } from '../shared/models/member.model';
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 
 export class MemberDataSource extends DataSource<any>{

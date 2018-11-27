@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Observable, Subject, throwError, BehaviorSubject, of } from 'rxjs';
 import { catchError, retry, map, finalize, tap } from 'rxjs/operators';
-import { Member } from '../../models/member';
+import { Member } from '../../shared/models/member.model';
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';

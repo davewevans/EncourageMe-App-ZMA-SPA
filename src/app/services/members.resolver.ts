@@ -1,16 +1,16 @@
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 
-import {Member} from "../models/member";
-import {Observable} from "rxjs";
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import { Member } from '../shared/models/member.model';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { map} from 'rxjs/operators';
 
 @Injectable()
 export class MembersResolver implements Resolve<Member[]> {
 
-    BASE_URL = "http://localhost:57544/api";
+    BASE_URL = 'http://localhost:57544/api';
 
     constructor(private http: HttpClient) {
     }

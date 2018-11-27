@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PaginationModel } from '../models/paginationModel';
+import { PaginationModel } from '../shared/models/pagination.model';
 import { PageEvent } from '@angular/material';
 
 @Injectable({

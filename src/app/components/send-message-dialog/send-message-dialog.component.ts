@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { ISendMessageFormData } from '../../interfaces/ISendMessageFormData';
+import { ISendMessageFormData } from '../../shared/interfaces/ISendMessageFormData';
 
 @Component({
   selector: 'app-send-message-dialog',

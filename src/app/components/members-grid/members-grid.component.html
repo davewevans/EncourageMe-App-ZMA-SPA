@@ -2,7 +2,7 @@
 <h2>ZMA Members</h2>
 
    <mat-form-field>
-    <input matInput placeholder="Search members" #input>   
+    <input matInput placeholder="Search members" #searchInput>   
  </mat-form-field>  
 
  <div class="spinner-container" *ngIf="loading$ | async">
@@ -12,7 +12,7 @@
   <!-- <div *ngIf="(members$ | async) as members">  -->
 
  <div>
-<mat-grid-list cols="5  " rowHeight="225" gutterSize="3px">
+<mat-grid-list cols="4" rowHeight="225" gutterSize="3px">
   <mat-grid-tile class="members-grid" *ngFor="let member of members">    
    
      <div>        

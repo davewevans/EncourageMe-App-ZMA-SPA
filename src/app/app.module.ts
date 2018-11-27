@@ -36,7 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MemberDirectorySidenavComponent } from './components/member-directory-sidenav/member-directory-sidenav.component';
 import { SendMessageDialogComponent } from './components/send-message-dialog/send-message-dialog.component';
 import { DialogExampleComponent, DialogOverviewExampleDialog } from './dialog-example/dialog-example.component';
-
+import { HammerJs } from '../../node_modules/hammerjs';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
