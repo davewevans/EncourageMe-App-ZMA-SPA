@@ -1,0 +1,11 @@
+<p>
+  primeng-test works!
+</p>
+
+<h3>Popup</h3>
+<p-menu #menu [popup]="true" [model]="items" appendTo="body"></p-menu>
+<button type="button" 
+        pButton icon="pi pi-cog" 
+        label="Show" 
+        (click)="menu.toggle($event)">       
+        </button>

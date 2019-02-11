@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   navlinks = [
-      {path:'home', label:'Home'},
-      {path:'about', label:'About'}
-  ];  
+      {path: 'home', label: 'Home'},
+      {path: 'about', label: 'About'}
+  ];
 
   title = 'ZMA-SPA';
 }

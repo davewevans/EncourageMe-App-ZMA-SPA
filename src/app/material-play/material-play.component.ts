@@ -12,10 +12,10 @@ export class MaterialPlayComponent implements OnInit {
 
   ngOnInit() {
 
-  }  
+  }
 
-  onChange($event){
-    console.log($event);    
+  onChange($event) {
+    console.log($event);
   }
 
 }

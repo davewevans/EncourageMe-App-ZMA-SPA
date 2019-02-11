@@ -1,0 +1,54 @@
+// :host {
+//     ::ng-deep .prime-listbox.ui-listbox {        
+//         width: 500px;
+        
+//     }   
+// } 
+
+// :host {
+//     ::ng-deep .prime-listbox-header.ui-listbox-header {
+//         background-color: red;
+//     }
+// } 
+
+.member-name {
+    font-size: 1em;
+    font-weight: bold; 
+}
+
+.message-display {
+    display: inline;
+}
+
+.member-icon {
+    float: left;
+}
+
+.flex-container-1 {
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.flex-child-container-1 {
+    display: flex;
+    flex-direction: column;    
+    justify-content: flex-start;
+}
+
+.header-text {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 1.5em;
+}
+
+.headerIcon {
+    font-weight: bold;
+    margin-left: 3px;
+    font-size: 1.5em;
+}
+
+.messages-listbox {
+    width: 300px;
+}

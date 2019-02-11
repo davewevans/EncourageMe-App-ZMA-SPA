@@ -1,0 +1,81 @@
+<!-- 
+ <p-listbox [options]="cars" [(ngModel)]="selectedCar">
+    <p-header>
+      <i class="fa fa-car"></i>
+      List of Car
+    </p-header>
+    <ng-template let-car let-i="index" pTemplate="item">
+        <div class="ui-helper-clearfix">
+            <img src="assets/showcase/images/demo/car/{{car.label}}.png" 
+            style="display:inline-block;margin:5px 0 0 5px" width="48">
+            <span style="float:right;margin:20px 10px 0 0">{{i}} - {{car.value}}</span>
+        </div>
+    </ng-template>
+    <p-footer>
+        Selected: {{selectedCar||'none'}}
+    </p-footer>
+</p-listbox> -->
+
+<!-- styleClass="prime-listbox prime-listbox-header" -->
+
+<p-listbox [options]="messages"
+    [(ngModel)]="selectedMessage"
+    [dataKey]="messageId" 
+    [style]="{'width':'400px'}"   
+    [listStyle]="{'max-height': '400px'}">
+    <p-header>
+        <i class="fa fa-smile-o headerIcon"></i>
+        <span class="header-text">Encouraging Messages</span> 
+    </p-header>
+    <ng-template let-message let-i="index" pTemplate="item">
+        <div class="flex-container-1">
+            <div>
+                <img class="avatar-50" [src]="message.fromMemberPicUri"
+                    style="display:inline-block;margin:5px 10px 5px 0px">
+            </div>
+
+            <div class="flex-child-container-1">
+                <div>
+                    <span class="member-name">{{ message.fromName }}</span><br />
+                </div>
+                <div>
+                    <span style="margin:20px 10px 0 0">{{ message.body }}</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <p-footer>
+        Selected: {{ selectedMessage || 'none' }}
+    </p-footer>
+</p-listbox>
+
+
+
+
+
+<!-- <mat-selection-list>
+    <mat-list-option *ngFor="let message of messages">
+        {{ message.fromName }}
+    <h3 matLine> {{ message.fromName }} </h3>
+        <img matListAvatar [src]="message.fromMemberPicUri" [alt]="message.fromName">
+    
+        <p matLine>
+          <span> {{ message.body }} </span>
+        </p>
+        <fa name="home"></fa>         
+       
+    </mat-list-option>
+  </mat-selection-list>  -->
+<!-- <mat-list>
+  <mat-list-item *ngFor="let message of messages">
+
+    <h3 matLine> {{ message.fromName }} </h3>
+    <img matListAvatar [src]="message.fromMemberPicUri" [alt]="message.fromName">
+
+    <p matLine>
+      <span> {{ message.body }} </span>
+    </p>
+    <fa name="home"></fa>    
+
+  </mat-list-item>
+</mat-list> -->

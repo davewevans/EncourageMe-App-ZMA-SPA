@@ -1,0 +1,72 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.toolbar {
+  max-height: 64px;
+  min-height: 64px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.spacer {
+  flex: 1 1 auto
+}
+
+.nav-title {
+  font-size: 2.5em;
+}
+
+.nav-menu-items {
+  font-size: 1em;
+}
+
+.drop-down-menu {
+  border-style: none;
+  width: 500px;
+}
+
+.account-button {
+  background-color: transparent;
+  border-style: none;
+  color: white;
+  // padding: 3px 3px;
+  height: 64px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+} 
+
+.account-button:hover  {
+  border-style: none;
+  border-color: transparent;
+ 
+  // box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.account-button:active {
+  border-style: none;
+  border-color: transparent;
+}
+
+.account-button:focus {
+   border-style: none;   
+   border-color: transparent;
+}
+
+

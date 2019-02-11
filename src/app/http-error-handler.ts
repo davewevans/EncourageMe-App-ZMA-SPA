@@ -2,7 +2,7 @@
 // import { HttpErrorResponse } from '@angular/common/http';
 
 
-// export type HandleError = <T>(operation?: string, result?: T) => 
+// export type HandleError = <T>(operation?: string, result?: T) =>
 //     (error: HttpErrorResponse) => Observable<T>;
 
 // /** Handles HttpClient errors */
@@ -11,7 +11,7 @@
 //     constructor(private errorService: ErrorService){ }
 //     /** Create handleError function that already knows the service name */
 //     createHandleError = (serviceName = '') => <T>
-//         (operation = 'operation', result = {}asT) => 
+//         (operation = 'operation', result = {}asT) =>
 //         this.handleError(serviceName, operation, result);
 //     /**
 //     * @param serviceName: name of the data service

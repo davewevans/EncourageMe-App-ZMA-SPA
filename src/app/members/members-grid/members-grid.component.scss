@@ -1,0 +1,36 @@
+.members-grid{
+    background: #DDBDF1;
+}
+
+.header{
+    // text-align: center;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.footer{
+    text-align: center;
+    position: absolute; 
+    left: 50px; 
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 25px 10px;  
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.img-member {
+   
+}
+
+.child-container {
+    border-style: solid;
+    border-width: medium;
+    border-color: purple;
+}
+
+

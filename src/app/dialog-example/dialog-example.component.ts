@@ -18,7 +18,7 @@ export class DialogExampleComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 

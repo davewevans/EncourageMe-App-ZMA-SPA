@@ -1,0 +1,143 @@
+<!-- Main navigation header toolbar and side nav-->
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a *ngIf="auth.roleMatch(['admin'])" mat-list-item routerLink="/admin">Admin
+        Panel</a>
+      <a *ngIf="auth.roleMatch(['member', 'admin'])" mat-list-item
+        routerLink="/members">Member Directory</a>
+
+      <a mat-list-item routerLink="/about">About</a>
+      <a mat-list-item routerLink="/primeng-test">PrimeNG Test</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <!-- Header toolbar-->
+    <mat-toolbar color="accent" class="toolbar">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <!-- <mat-icon aria-label="Side nav toggle icon">menu</mat-icon> -->
+        <fa aria-label="Side nav toggle icon" size="lg" name="navicon"></fa>
+      </button>
+
+      <button mat-button routerLink="/"><span class="nav-title">ZMA</span></button>
+      <button *ngIf="auth.roleMatch(['member', 'admin'])" mat-button
+        routerLink="/members"><span class="nav-menu-items">Members</span></button>
+      <button mat-button routerLink="/about"><span class="nav-menu-items">About</span></button>
+      <button mat-button (click)="auth.test()"><span class="nav-menu-items">Test</span></button>
+
+      <span class="spacer"></span>
+
+      <button *ngIf="!auth.isAuthenticated" mat-button
+        (click)="openLoginDialog()">Login</button>
+      <button *ngIf="!auth.isAuthenticated" mat-button
+        (click)="openRegisterDialog()">Register</button>
+
+      <!-- <p-dropdown *ngIf="auth.isAuthenticated" #dropdown
+        [options]="memberOptions"
+        [(ngModel)]="selectedOption"
+        placeholder="{{ auth.firstName }}"
+        [showClear]="false"
+        [style]="{'border':'none'}"
+        [autofocus]="true"
+        dropdownIcon="pi pi-cog"
+        (onChange)="onOptionSelected(event, selectedOption)"
+        (onShow)="onShowDropDown()"
+        (onBlur)="onBlur()"
+        (onFocus)="onFocus()"
+        (onHide)="onFocus()">
+        <ng-template let-option pTemplate="selectedOption">
+          <span [class]="option.icon"></span>
+          <span style="vertical-align:middle; margin-left: .5em">{{option.label}}</span>
+        </ng-template>
+      </p-dropdown> -->
+
+
+        <!-- icon="pi pi-caret-down"
+        iconPos="right"
+        label="{{ auth.firstName }}" 
+        class="ui-button-raised ui-button-secondary"
+        -->
+
+      <p-menu #menu [popup]="true" 
+      [model]="items" 
+      appendTo="body"></p-menu>
+      <button *ngIf="auth.isLoggedIn()" 
+        mat-button
+        type="button" 
+        class="account-button"
+        (click)="menu.toggle($event)">
+
+          <img *ngIf="hasMemberPhotoUri()" 
+              class="avatar-40" [src]="auth.memberPhotoUri">   
+       
+          <i *ngIf="!hasMemberPhotoUri()" class="pi pi-user" style="font-size: 3em"></i>
+  
+        <i class="pi pi-angle-down" style="margin-left: 5px; font-size: 1.5em"></i>
+      </button>
+
+        <!-- <button id="close-image"><img src="http://127.0.0.1:10000/devstoreaccount1/member-pics-demo/1001-20191416482516.png"></button> -->
+
+
+
+      <!-- <i class="pi pi-bell"></i> -->
+
+      <!-- <p-splitButton *ngIf="auth.isAuthenticated" #splitBtnOptions
+        label="{{ auth.firstName }}"
+        icon="pi pi-bell"
+        (onClick)="save()"
+        [model]="items">
+      </p-splitButton> -->
+      <!-- <p-menu [popup]="true" [model]="items"></p-menu> -->
+
+      <!-- <p-menu #menu [popup]="true" [model]="items"></p-menu>
+      <button type="button" pButton icon="fa fa-fw fa-list" label="Show"
+      (click)="menu.toggle($event)"></button> -->
+      <!-- <p-menu #menu [popup]="true" [model]="items"></p-menu>
+      <button type="button"
+        pButton
+        icon="pi pi-cog"
+        label="Show"
+        (click)="menu.toggle($event)"></button> -->
+
+
+      <!-- <button mat-button [matMenuTriggerFor]="memberMenu"> -->
+        <!-- <img [src]="" -->
+        <!-- {{ auth.firstName }}
+        <i class="pi pi-cog" style="font-size: 2.5em"></i>
+      </button>
+      <mat-menu #memberMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+           <span>Settings</span>
+        </button>
+        <button mat-menu-item>
+           <mat-icon>signout</mat-icon>
+           <span>Sign-out</span>
+        </button>
+      </mat-menu> -->
+
+
+
+          </mat-toolbar>
+          <!-- / Header toolbar-->
+
+          <!-- Add Content Here -->
+          <router-outlet></router-outlet>
+
+        </mat-sidenav-content>
+      </mat-sidenav-container>

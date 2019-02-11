@@ -1,0 +1,30 @@
+
+<h2>Member Profile</h2>
+<!-- <p>{{ memberProfile.firstName }}</p>
+<p>{{ memberProfile.primaryPhotoUri }}</p> -->
+
+<div *ngIf="this.memberProfile !== null && this.memberProfile !== undefined">
+    <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{ getFullName() }}</mat-card-title>
+          <mat-card-subtitle>{{ getGender() }}</mat-card-subtitle>
+        </mat-card-header>
+        <img width="150px" height="150px" [src]="memberProfile.profilePhotoUri" [alt]="getFullName()">
+        <mat-card-content>
+          <p> {{ memberProfile.aboutMe }}</p>
+          <p> {{ memberProfile.email }}</p>
+          <p> Birth Date: {{ memberProfile.birthDate | date:'mediumDate' }}</p>
+          <p> Join Zion Date: {{ memberProfile.joinZionDate | date:'mediumDate' }}</p>
+          <p> Wedding Date: {{ memberProfile.weddingDate |  date:'mediumDate'}}</p>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions> -->
+      </mat-card>
+
+      <app-pic-upload></app-pic-upload>
+
+</div>
+

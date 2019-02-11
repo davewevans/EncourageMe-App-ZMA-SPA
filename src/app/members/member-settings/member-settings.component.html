@@ -1,0 +1,265 @@
+
+<div class="settings-form">
+  <mat-card>
+    <mat-card-title>
+      Account Settings
+      <mat-slide-toggle #editSlide
+        class="edit-toggle"
+        [color]="color"
+        [checked]="checked"
+        [(ngModel)]="editMode"
+        (toggleChange)="onEditToggleChange($event)"
+        (dragChange)="onEditToggleChange($event)">
+        Edit
+      </mat-slide-toggle>
+    </mat-card-title>
+    <mat-card-content>
+
+      <form [formGroup]="settingsForm">
+
+        <div class="input-field">
+          <mat-radio-group class="radio-group"
+            formControlName="gender">
+            <mat-radio-button
+              class="radio-button"
+              *ngFor="let gender of genders"
+              [value]="gender">
+              {{ gender }}
+              <span class="space"></span>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="First Name"
+              maxlength="50"
+              formControlName="firstName">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('firstName')">
+              {{ getControlErrorMessage('firstName') }}</span>
+          </div>
+        </div>
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Last Name"
+              maxlength="50"
+              formControlName="lastName">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('lastName')">
+              {{ getControlErrorMessage('lastName') }}</span>
+          </div>
+        </div>
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              type="email"
+              maxlength="50"
+              placeholder="Email"
+              formControlName="email">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('email')">
+              {{ getControlErrorMessage('email') }}</span>
+          </div>
+        </div>
+
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              type="tel"
+              maxlength="50"
+              placeholder="Mobile Phone Number"
+              formControlName="mobilePhoneNumber">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('mobilePhoneNumber')">
+              {{ getControlErrorMessage('mobilePhoneNumber') }}</span>
+          </div>
+        </div>
+
+        <div class="input-field">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1"
+              placeholder="Birthdate"
+              formControlName="birthdate"
+              [value]="getBirthdate()">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="input-field">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2"
+              placeholder="Wedding Date"
+              formControlName="weddingDate"
+              [value]="getWeddingDate()">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="input-field">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker3"
+              placeholder="Join Zion Date"
+              formControlName="joinZionDate"
+              [value]="getJoinZionDate()">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+
+
+
+        <!-- <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              type=""
+              maxlength="50"
+              placeholder="Birthdate"
+              formControlName="birthdate">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('birthdate')">
+              {{ getControlErrorMessage('birthdate') }}</span>
+          </div>
+        </div> -->
+        <!-- <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              type=""
+              maxlength="50"
+              placeholder="Wedding Date"
+              formControlName="weddingDate">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('weddingDate')">
+              {{ getControlErrorMessage('weddingDate') }}</span>
+          </div>
+        </div> -->
+        <!-- <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              type=""
+              maxlength="50"
+              placeholder="Join Zion Date"
+              formControlName="joinZionDate">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('joinZionDate')">
+              {{ getControlErrorMessage('joinZionDate') }}</span>
+          </div>
+        </div> -->
+        <div class="input-field">
+          <mat-slide-toggle
+            class="toggles"
+            [color]="color"
+            [checked]="checked"
+            labelPosition="before"
+            formControlName="activeAccount">
+            Active Account
+          </mat-slide-toggle>
+        </div>
+
+        <div class="input-field">
+          <mat-slide-toggle
+            class="toggles"
+            [color]="color"
+            [checked]="checked"
+            labelPosition="before"
+            formControlName="receiveEmail">
+            Receive Emails
+          </mat-slide-toggle>
+        </div>
+
+        <div class="input-field">
+          <mat-slide-toggle
+            class="toggles"
+            [color]="color"
+            [checked]="checked"
+            labelPosition="before"
+            formControlName="receiveTextMessages">
+            Receive Text Messages
+          </mat-slide-toggle>
+        </div>
+
+        <div class="input-field">
+          <mat-slide-toggle
+            class="toggles"
+            [color]="color"
+            [checked]="checked"
+            labelPosition="before"
+            formControlName="birthdayNotificationsOptIn">
+            Receive Birthday Notifications
+          </mat-slide-toggle>
+        </div>
+
+        <div class="input-field">
+          <mat-slide-toggle
+            class="toggles"
+            [color]="color"
+            [checked]="checked"
+            labelPosition="before"
+            formControlName="pray4MeOptIn">
+            Pray4Me Participation
+          </mat-slide-toggle>
+        </div>
+
+        <div class="input-field">
+          <mat-slide-toggle
+            class="toggles"
+            [color]="color"
+            [checked]="checked"
+            labelPosition="before"
+            formControlName="informMeOptIn">
+            InformMe Participation
+          </mat-slide-toggle>
+        </div>
+
+        <div class="input-field">
+          <mat-slide-toggle
+            class="toggles"
+            [color]="color"
+            [checked]="checked"
+            labelPosition="before"
+            formControlName="showBirthdate">
+            Display Birthdate
+          </mat-slide-toggle>
+        </div>
+
+
+
+
+
+        <button mat-raised-button
+          (click)="onSubmit()"
+          color="primary"
+          [disabled]="buttonsDisabled">Save</button>
+        <span class="space"></span>
+        <!-- <button mat-raised-button
+          (click)="onCancel()"
+          color="warn"
+          [disabled]="buttonsDisabled">Cancel</button> -->
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="error-msg">
+        <span *ngIf="isFormInvalid()">{{ getFormErrorMessage() }}</span>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>

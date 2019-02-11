@@ -1,0 +1,253 @@
+<!-- <div class="row">
+  <div class="col-md-6">
+    <h2>Please enter your information</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+      <form #f="ngForm" novalidate (ngSubmit)="registerUser(f)">
+          <div class="form-group">
+              <label for="first-name">First name</label>
+              <input type="text" class="form-control" id="first-name" placeholder="First name" name="firstName" tmFocus ngModel>              
+          </div>
+          <div class="form-group">
+              <label for="last-name">Last name</label>
+              <input type="text" class="form-control" id="last-name" placeholder="Last name" name="lastName" ngModel>              
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+          	<input id="email" type="text" required name="email" validateEmail class="form-control" placeholder="Email" ngModel  #email="ngModel">
+            <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" ngModel>
+          </div> 
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Sign Up</button>
+              <app-spinner [isRunning]="isRequesting"></app-spinner> 
+          </div>
+
+          <div *ngIf="error" class="alert alert-danger" role="alert">
+              <strong>Oops!</strong> {{ error }}
+            </div>               
+          
+        </form>
+   </div>
+</div>
+
+ -->
+
+<div class="register-form">
+  <mat-card>
+    <mat-card-title>
+      New Account
+    </mat-card-title>
+    <mat-card-content>
+
+      <form [formGroup]="signUpForm">
+        <mat-radio-group class="radio-group"
+          formControlName="gender">
+          <mat-radio-button
+            class="radio-button"
+            *ngFor="let gender of genders"
+            [value]="gender">
+            {{gender}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="First Name"
+              maxlength="50"
+              formControlName="firstName">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('firstName')">
+              {{ getControlErrorMessage('firstName') }}</span>
+          </div>
+        </div>
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Last Name"
+              maxlength="50"
+              formControlName="lastName">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('lastName')">
+              {{ getControlErrorMessage('lastName') }}</span>
+          </div>
+        </div>
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              type="email"
+              maxlength="50"
+              placeholder="Email"
+              formControlName="email">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('email')">
+              {{ getControlErrorMessage('email') }}</span>
+          </div>
+        </div>
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              maxlength="30"
+              formControlName="password">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('password')">
+              {{ getControlErrorMessage('password') }}</span>
+          </div>
+        </div>
+        <div class="input-field">
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Confirm Password"
+              maxlength="30"
+              formControlName="passwordConfirm">
+          </mat-form-field>
+          <div class="error-msg">
+            <span *ngIf="isInvalid('passwordConfirm')">
+              {{ getControlErrorMessage('passwordConfirm') }}</span>
+          </div>          
+        </div>
+        <button mat-raised-button
+          (click)="onSubmit()"
+          color="primary">Register</button>
+          <span class="space"></span>
+        <button mat-raised-button
+          (click)="onCancel()"
+          color="warn">Cancel</button>
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="error-msg">
+        <span *ngIf="isFormInvalid()">{{ getFormErrorMessage() }}</span>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>
+
+
+<!-- [ngClass]="{'not-valid': isInvalid('email')}" -->
+
+<!-- 
+ <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <div formGroupName="userData">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-control">
+              <span
+                *ngIf="!signupForm.get('userData.firstName').valid && signupForm.get('userData.firstName').touched"
+                class="help-block">
+                <span *ngIf="signupForm.get('userData.firstName').errors['nameIsForbidden']">This name is invalid!</span>
+                <span *ngIf="signupForm.get('userData.firstName').errors['required']">First name is required!</span>
+  
+              </span>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  formControlName="lastName"
+                  class="form-control">
+                <span
+                  *ngIf="!signupForm.get('userData.lastName').valid && signupForm.get('userData.lastName').touched"
+                  class="help-block">
+                  <span *ngIf="signupForm.get('userData.lastName').errors['nameIsForbidden']">This name is invalid!</span>
+                  <span *ngIf="signupForm.get('userData.lastName').errors['required']">Last name is required!</span>
+    
+                </span>
+              </div>
+            <div class="form-group">
+              <label for="email">email</label>
+              <input
+                type="text"
+                id="email"
+                formControlName="email"
+                class="form-control">
+              <span
+                *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched"
+                class="help-block">Please enter a valid email!</span>
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="text"
+                id="password"
+                formControlName="password"
+                class="form-control">
+              <span
+                *ngIf="!signupForm.get('userData.password').valid && signupForm.get('userData.password').touched"
+                class="help-block">
+                <span *ngIf="signupForm.get('userData.lastName').errors['nameIsForbidden']">This name is invalid!</span>
+                <span *ngIf="signupForm.get('userData.password').errors['required']">Password is required!</span>
+  
+              </span>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                  type="text"
+                  id="confirmPassword"
+                  formControlName="confirmPassword"
+                  class="form-control">
+                <span
+                  *ngIf="!signupForm.get('userData.confirmPassword').valid && signupForm.get('userData.confirmPassword').touched"
+                  class="help-block">
+                  <span *ngIf="signupForm.get('userData.lastName').errors['nameIsForbidden']">This name is invalid!</span>
+                  <span *ngIf="signupForm.get('userData.confirmPassword').errors['required']">Confirm Password is required!</span>
+    
+                </span>
+              </div>            
+
+          <div class="radio" *ngFor="let gender of genders">
+            <label>
+              <input
+                type="radio"
+                formControlName="gender"
+                [value]="gender">{{ gender }}
+            </label>
+          </div> -->
+<!-- <div formArrayName="hobbies">
+            <h4>Your Hobbies</h4>
+            <button
+              class="btn btn-default"
+              type="button"
+              (click)="onAddHobby()">Add Hobby</button>
+            <div
+              class="form-group"
+              *ngFor="let hobbyControl of signupForm.get('hobbies').controls; let i = index">
+              <input type="text" class="form-control" [formControlName]="i">
+            </div>
+          </div> -->
+<!-- <span
+            *ngIf="!signupForm.valid && signupForm.touched"
+            class="help-block">Please enter valid data!</span>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div> -->

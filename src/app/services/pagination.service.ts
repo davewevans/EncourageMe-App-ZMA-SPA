@@ -24,7 +24,7 @@ export class PaginationService {
     this.paginationModel = new PaginationModel(); 
   }
 
-  resetPageIndex(){
+  resetPageIndex() {
     this.paginationModel.pageIndex = 1;
   }
   

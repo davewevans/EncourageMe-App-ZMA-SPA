@@ -1,0 +1,65 @@
+#emoji::after {
+    content: "\01F354";    
+}
+
+
+// .avatar {
+//   vertical-align: middle;
+//   width: 100px;
+//   height: 100px;
+//   border-radius: 50%;
+   
+// }
+
+// .avatar {
+//     -webkit-border-radius: 50%;
+//     -moz-border-radius: 50%;
+//     border-radius: 50%;
+//     -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+//     -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+//     box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+// }
+
+
+.wrapper {
+    width:50px;
+    height:50px;
+    margin: 25px auto;
+    overflow: hidden;
+    border-radius:50%;
+    position: relative;
+}
+.wrapper img {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%)
+}
+
+.flex-container {
+    margin-left: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.received-messages-container {
+
+}
+
+.sent-messages-container {
+ 
+}
+
+
+// @media all and (max-width: 800px) {
+//     .flex-container {
+//         justify-content: space-around;
+//     }
+// }
+// @media all and (max-width: 500px) {
+//     .flex-container {
+//         flex-direction: column;
+//     }
+// }

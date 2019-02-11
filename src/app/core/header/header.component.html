@@ -1,0 +1,24 @@
+<mat-toolbar color="accent">
+ 
+
+  <button mat-button routerLink="/"><span class="nav-title">foo</span></button>
+  <button *ngIf="auth.roleMatch(['member', 'admin'])" mat-button routerLink="/members"><span class="nav-menu-items">Members</span></button>
+  <button mat-button routerLink="/about"><span class="nav-menu-items">About</span></button>
+  <button mat-button (click)="auth.test()"><span class="nav-menu-items">Test</span></button>
+  
+
+  <span style="flex: 1 1 auto"></span> -->
+  <button *ngIf="!auth.isAuthenticated" mat-button routerLink="/login">Login</button>
+  <button *ngIf="!auth.isAuthenticated" mat-button (click)="openRegisterDialog()">Register</button>
+  <!-- <button mat-button routerLink="/login">Login</button>
+  <button mat-button routerLink="/register">Register</button> -->
+  <button *ngIf="auth.isAuthenticated" mat-button routerLink="/user">Welcome {{ auth.name }}</button>
+  <button *ngIf="auth.isAuthenticated" mat-button (click)="auth.logout()">Logout</button>
+
+  <!-- <span style="flex: 1 1 auto"></span>
+  <button *ngIf="auth.roleMatch(['admin'])" mat-button routerLink="/admin"><span class="nav-menu-items">Admin</span></button>
+  <button *ngIf="!auth.isAuthenticated" mat-button routerLink="/login">Login</button>
+  <button *ngIf="!auth.isAuthenticated" mat-button routerLink="/register">Register</button>
+  <button *ngIf="auth.isAuthenticated" mat-button routerLink=" + /">Welcome {{ auth.firstName }}</button>
+  <button *ngIf="auth.isAuthenticated" mat-button (click)="auth.logout()">Logout</button> -->
+</mat-toolbar>
