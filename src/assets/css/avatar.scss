@@ -30,10 +30,7 @@
 .avatar-125 {
     @extend %avatar;
     width: 125px;
-    height: 125px;
-    border-width: medium;
-    border-style: double;
-    border-color: blue;
+    height: 125px;  
 }
 .avatar-150 {
     @extend %avatar;

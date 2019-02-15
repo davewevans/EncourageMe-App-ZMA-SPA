@@ -6,6 +6,7 @@ import { DialogOverviewExampleDialog } from './dialog-example/dialog-example.com
 import { AuthGuard } from './auth/auth-guard.service';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { PrimengTestComponent } from './primeng-test/primeng-test.component';
+import { ColorSchemesComponent } from './color-schemes/color-schemes.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
     { path: 'admin', component: AdminDashboardComponent, canActivate: [AuthGuard], data: { roles: ['admin'] }},
     { path: 'dialogtest', component: DialogOverviewExampleDialog },
     { path: 'primeng-test', component: PrimengTestComponent },
+    { path: 'color-schemes', component: ColorSchemesComponent },    
   ];
 
 @NgModule({

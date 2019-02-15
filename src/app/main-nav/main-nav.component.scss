@@ -13,6 +13,8 @@
 .toolbar {
   max-height: 64px;
   min-height: 64px;
+  background-color: #c3eb78;
+  color: #f9fdf2;
 }
 
 .mat-toolbar.mat-primary {
@@ -26,7 +28,16 @@
 }
 
 .nav-title {
-  font-size: 2.5em;
+  font-size: 1.5em;
+  color: #47562c;
+  white-space: normal;
+  width: 200px;
+}
+
+.nav-tag-line {
+  font-size: .7em;
+  color: #47562c;
+  text-align: center;
 }
 
 .nav-menu-items {
@@ -67,6 +78,10 @@
 .account-button:focus {
    border-style: none;   
    border-color: transparent;
+}
+
+.content-wrapper {
+  background-color: #f5f5f5;  
 }
 
 

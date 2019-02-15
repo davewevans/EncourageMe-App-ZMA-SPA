@@ -46,6 +46,7 @@ import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { PrimengTestComponent } from './primeng-test/primeng-test.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { ColorSchemesComponent } from './color-schemes/color-schemes.component';
 
 // Rollbar config
 // https://rollbar.com/helloworldsuperdave/encourageme
@@ -79,7 +80,8 @@ export class RollbarErrorHandler implements ErrorHandler {
     AdminDashboardComponent,
     ForbiddenComponent,
     MainNavComponent,
-    PrimengTestComponent
+    PrimengTestComponent,
+    ColorSchemesComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { MessagesService } from '../messages.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { SelectItem } from 'primeng/api';
 import { SELECT_ITEM_HEIGHT_EM } from '@angular/material';
+import { MessageReceived } from '../models/message-received.model';
 
 
 interface City {
@@ -11,20 +12,20 @@ interface City {
   code: string;
 }
 
-export class MessageReceived implements SelectItem {
-  messageId: number;
-  fromName: string;
-  subject: string;
-  body: string;
-  fromMemberPicUri?: string;
+// export class MessageReceived implements SelectItem {
+//   messageId: number;
+//   fromName: string;
+//   subject: string;
+//   body: string;
+//   fromMemberPicUri?: string;
 
-  label?: string;
-  value: any;
-  styleClass?: string;
-  icon?: string;
-  title?: string;
-  disabled?: boolean;
-}
+//   label?: string;
+//   value: any;
+//   styleClass?: string;
+//   icon?: string;
+//   title?: string;
+//   disabled?: boolean;
+// }
 
  // styleUrls: ['./received-messages.component.scss']
 @Component({

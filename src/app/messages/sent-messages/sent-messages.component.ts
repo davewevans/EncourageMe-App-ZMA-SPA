@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageReceived } from '../received-messages/received-messages.component';
 import { MessagesService } from '../messages.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { MessageSent } from '../models/message-sent.model';
 
 @Component({
   selector: 'app-sent-messages',

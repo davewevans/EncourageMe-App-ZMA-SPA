@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
-import { MessageReceived } from './received-messages/received-messages.component';
+import { MessageSent } from './models/message-sent.model';
+import { MessageReceived } from './models/message-received.model';
 
 @Injectable({
   providedIn: 'root'

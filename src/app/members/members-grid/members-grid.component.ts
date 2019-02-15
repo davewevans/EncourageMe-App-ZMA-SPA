@@ -28,8 +28,7 @@ export class MembersGridComponent implements OnInit, AfterViewInit {
   // app spinner config
   color = 'accent';
   mode = 'indeterminate';
-  value = 50;
-
+  value = 50;  
 
   // membersSubject = new BehaviorSubject<Member[]>([]);
   private loadingMembers = new BehaviorSubject<boolean>(false);
@@ -129,6 +128,16 @@ export class MembersGridComponent implements OnInit, AfterViewInit {
       console.log('toMemberId: ' + result.memberId);
       console.log('message: ' + result.message);
       this.dataService.sendMessage(result).subscribe();
+  }
+
+  getGenderPronoun(gender) {
+    if (gender === 0) {
+      return 'him';
+    } else if (gender === 1) {
+      return 'her';
+    } else {
+      return '';
+    }
   }
 }
 

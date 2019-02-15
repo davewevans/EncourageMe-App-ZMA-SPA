@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.color-bar {
+    display:inline-block;
+    width:60px;    
+}
+
+.hex {
+    margin-left: 5px;
+    font-weight: bold;
+}

@@ -14,12 +14,13 @@
 
       <a mat-list-item routerLink="/about">About</a>
       <a mat-list-item routerLink="/primeng-test">PrimeNG Test</a>
+      <a mat-list-item routerLink="/color-schemes">Color Schemes</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
 
     <!-- Header toolbar-->
-    <mat-toolbar color="accent" class="toolbar">
+    <mat-toolbar class="toolbar">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -30,11 +31,19 @@
         <fa aria-label="Side nav toggle icon" size="lg" name="navicon"></fa>
       </button>
 
-      <button mat-button routerLink="/"><span class="nav-title">ZMA</span></button>
-      <button *ngIf="auth.roleMatch(['member', 'admin'])" mat-button
+    <button mat-button routerLink="/">
+         <!-- <div>
+            <span class="nav-title">EncourageMe<br /> line 2</span>           
+         </div>          -->
+
+
+         <img src="../assets/svg/encourageme_logo_tagline.svg" alt="EncourageMe" height="64px" width="200px" />
+    </button> 
+      
+      <!-- <button *ngIf="auth.roleMatch(['member', 'admin'])" mat-button
         routerLink="/members"><span class="nav-menu-items">Members</span></button>
       <button mat-button routerLink="/about"><span class="nav-menu-items">About</span></button>
-      <button mat-button (click)="auth.test()"><span class="nav-menu-items">Test</span></button>
+      <button mat-button (click)="auth.test()"><span class="nav-menu-items">Test</span></button> -->
 
       <span class="spacer"></span>
 
@@ -137,7 +146,10 @@
           <!-- / Header toolbar-->
 
           <!-- Add Content Here -->
-          <router-outlet></router-outlet>
+          <div class="content-wrapper">
+            <router-outlet></router-outlet>
+          </div>
+        
 
         </mat-sidenav-content>
       </mat-sidenav-container>
