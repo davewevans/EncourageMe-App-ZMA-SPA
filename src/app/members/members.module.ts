@@ -1,11 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MembersGridComponent } from './members-grid/members-grid.component';
 import { MemberDirectoryComponent } from './member-directory/member-directory.component';
-import { MemberTableComponent } from './member-table/member-table.component';
-import { MemberDirectorySidenavComponent } from './member-directory-sidenav/member-directory-sidenav.component';
-
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule,
@@ -33,15 +29,17 @@ import { FileUploadModule } from '../file-upload/file-upload.module';
 import { MemberSettingsComponent } from './member-settings/member-settings.component';
 import { MessagesModule } from '../messages/messages.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DirectoryComponent } from './directory/directory.component';
+import { GroupDirectoryComponent } from './group-directory/group-directory.component';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
     declarations: [
-        MembersGridComponent,
         MemberDirectoryComponent,
-        MemberTableComponent,
-        MemberDirectorySidenavComponent,
         MemberProfileComponent,
         MemberSettingsComponent,
+        DirectoryComponent,
+        GroupDirectoryComponent,
     ],
     imports: [
         CommonModule,
@@ -72,7 +70,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         MatRadioModule,
         FormsModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        TabViewModule
     ]
 })
 export class MembersModule {

@@ -21,13 +21,13 @@ export class PaginationService {
   }
 
   constructor() {
-    this.paginationModel = new PaginationModel(); 
+    this.paginationModel = new PaginationModel();
   }
 
   resetPageIndex() {
     this.paginationModel.pageIndex = 1;
   }
-  
+
   change(pageEvent: PageEvent) {
     this.paginationModel.pageIndex = pageEvent.pageIndex + 1;
     this.paginationModel.pageSize = pageEvent.pageSize;

@@ -7,14 +7,16 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a *ngIf="auth.roleMatch(['admin'])" mat-list-item routerLink="/admin">Admin
-        Panel</a>
-      <a *ngIf="auth.roleMatch(['member', 'admin'])" mat-list-item
-        routerLink="/members">Member Directory</a>
-
-      <a mat-list-item routerLink="/about">About</a>
-      <a mat-list-item routerLink="/primeng-test">PrimeNG Test</a>
-      <a mat-list-item routerLink="/color-schemes">Color Schemes</a>
+        <a *ngIf="auth.roleMatch(['admin'])" mat-list-item routerLink="/admin">Admin
+          Panel</a>
+        <a *ngIf="auth.roleMatch(['member'])" mat-list-item
+          routerLink="/directory/0">Member Directory</a>
+        <a *ngIf="auth.roleMatch(['member'])" mat-list-item
+          routerLink="/directory/1">Group Directory</a>
+  
+        <a mat-list-item routerLink="/about">About</a>
+        <a mat-list-item routerLink="/primeng-test">PrimeNG Test</a>
+        <a mat-list-item routerLink="/color-schemes">Color Schemes</a>    
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -48,7 +50,7 @@
       <span class="spacer"></span>
 
       <button *ngIf="!auth.isAuthenticated" mat-button
-        (click)="openLoginDialog()">Login</button>
+        (click)="openLoginDialog()">Sign-in</button>
       <button *ngIf="!auth.isAuthenticated" mat-button
         (click)="openRegisterDialog()">Register</button>
 

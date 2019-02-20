@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemberTableComponent } from './member-table.component';
+import { GroupDirectoryComponent } from './group-directory.component';
 
-describe('MemberTableComponent', () => {
-  let component: MemberTableComponent;
-  let fixture: ComponentFixture<MemberTableComponent>;
+describe('GroupDirectoryComponent', () => {
+  let component: GroupDirectoryComponent;
+  let fixture: ComponentFixture<GroupDirectoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberTableComponent ]
+      declarations: [ GroupDirectoryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemberTableComponent);
+    fixture = TestBed.createComponent(GroupDirectoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

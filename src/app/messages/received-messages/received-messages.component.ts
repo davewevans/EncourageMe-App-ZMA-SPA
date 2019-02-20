@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { SelectItem } from 'primeng/api';
 import { SELECT_ITEM_HEIGHT_EM } from '@angular/material';
 import { MessageReceived } from '../models/message-received.model';
+import { Status } from '../models/status.enum';
 
 
 interface City {
@@ -38,6 +39,7 @@ export class ReceivedMessagesComponent implements OnInit {
   messages: MessageReceived[];
   selectedMessages: string[];
   selectedMessage: MessageReceived;
+  panelOpenState = false;
 
   constructor(private msgService: MessagesService, private auth: AuthService) {
 
@@ -59,8 +61,37 @@ export class ReceivedMessagesComponent implements OnInit {
           // PrimeNG listbox requires a 'value' and 'icon' property
           element.value = element.body;
           element.icon = element.fromMemberPicUri;
+
+          console.log('date created: ' + element.dateCreated);
+
         });
       });
+  }
+
+  openMessage(message: MessageReceived) {
+    this.toggleMessageState(message);
+    message.messageHasOpened = true;
+    message.status = Status.Read;
+  }
+
+  closeMessage(message: MessageReceived) {
+    this.toggleMessageState(message);
+  }
+
+  toggleMessageState(message: MessageReceived) {
+    message.messageOpen = message.messageOpen ? false : true;
+  }
+
+  showNotReadIcon(message: MessageReceived) {
+    return message.status !== Status.Read && message.status !== Status.Archived;
+  }
+
+  showArchiveIcon(message: MessageReceived) {
+    return message.messageHasOpened || message.status === Status.Read;
+  }
+
+  showFlagIcon(message: MessageReceived) {
+    return message.messageHasOpened || message.status === Status.Read;
   }
 
 }

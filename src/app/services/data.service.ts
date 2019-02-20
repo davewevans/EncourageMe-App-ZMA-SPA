@@ -9,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
 import { MemberProfile } from '../members/models/member-profile.model';
 import { SendMessageFormData } from '../messages/models/send-message-form-data.model';
 import { MemberSettings } from '../members/models/member-settings.model';
+import { Group } from '../members/models/group.model';
 // import { of } from 'rxjs/observable/of';
 
 @Injectable({
@@ -51,15 +52,20 @@ export class DataService {
     this.headers = this.headers.set('Access-Control-Allow-Origin', '*');
 
     const mergedUrl = this.BASE_URL + '/members';
+
     return this.http.get<Member[]>(mergedUrl, {
-      observe: 'response', // observe the whole http response (needed to read headers)
+      observe: 'response', // observe the whole http response (needed to read header)
       params: new HttpParams()
-      .set('query', filter)
-      .set('sortOrder', sortOrder)
-      .set('page', pageNumber.toString())
-      .set('pageSize', pageSize.toString()),
-      headers: this.headers
-    });
+        .set('query', filter)
+        .set('sortOrder', sortOrder)
+        .set('page', pageNumber.toString())
+        .set('pageSize', pageSize.toString()),
+      headers: this.headers});
+  }
+
+  getgroups(): Observable<Group[]> {
+    const mergedUrl = this.BASE_URL + '/groups';
+    return this.http.get<Group[]>(mergedUrl);
   }
 
   sendMessage(result: SendMessageFormData) {
@@ -78,7 +84,7 @@ export class DataService {
 
   getMemberSettings() {
 
-    console.log("getMemberSettings() memberId: " + this.auth.memberId);
+    console.log('getMemberSettings() memberId: ' + this.auth.memberId);
 
     const memberId = localStorage.getItem(this.auth.MEMBER_ID_KEY);
     const mergedUrl = this.BASE_URL + '/membersettings/' + memberId;

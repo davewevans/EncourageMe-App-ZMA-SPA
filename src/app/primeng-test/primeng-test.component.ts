@@ -8,6 +8,9 @@ import { MenuItem } from 'primeng/api';
 })
 export class PrimengTestComponent implements OnInit {
 
+    panelOpenState = false;
+    step = 0;
+
   constructor() { }
 
   items: MenuItem[];
@@ -27,6 +30,20 @@ export class PrimengTestComponent implements OnInit {
               {label: 'Remove User', icon: 'pi pi-fw pi-user-minus'}
           ]
       }];
+  }
+
+
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 }

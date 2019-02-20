@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MatSlideToggle } from '@angular/material';
 import { DataService } from 'src/app/services/data.service';
 import { MemberSettings } from '../models/member-settings.model';
+import { MembersService } from '../members.service';
 
 
 @Component({
@@ -137,10 +138,7 @@ export class MemberSettingsComponent implements OnInit {
     }
   }
 
-  onEditToggleChange(value) {
-
-
-    console.log('edit mode: ' + this.editMode);
+  onEditToggleChange() {
 
     this.matSlideToggle.toggle();
 

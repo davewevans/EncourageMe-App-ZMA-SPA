@@ -1,0 +1,21 @@
+<div class="grid-container">
+    <div class="child-container" *ngFor="let group of groups$ | async">
+      <div>
+        <div *ngIf="!hasGroupPhotoUri(group)">
+            <i class="fa fa-group default-profile-icon"></i>            
+        </div>
+        
+          
+        <img *ngIf="hasGroupPhotoUri(group)"
+          class="avatar-125 img-group" [src]="group.groupPhotoUri"
+          width="125" height="125" />
+      </div>
+      <div class="header">
+        {{group.groupName}}
+      </div>
+      <div>
+        <button class="btn-encourage"
+          (click)="openSendMessageDialog(group)">Encourage them</button>
+      </div>
+    </div>
+  </div>

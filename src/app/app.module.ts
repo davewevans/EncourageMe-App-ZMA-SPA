@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpErrorInterceptor } from './http-error.interceptor';
 // import * as Rollbar from 'rollbar';
-
 import {
   MatTabsModule,
   MatIconModule,
@@ -22,6 +21,7 @@ import {
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatDialogModule,
+  MatExpansionModule,
   MAT_DIALOG_DATA, MatListModule, MatDatepickerModule
 } from '@angular/material';
 import { AppComponent } from './app.component';
@@ -118,7 +118,7 @@ export class RollbarErrorHandler implements ErrorHandler {
     MenuModule,
     ButtonModule,
     MatMenuModule,
-    
+    MatExpansionModule,
   ],
   providers: [
      // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

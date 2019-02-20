@@ -1,0 +1,17 @@
+.example-tab-icon {
+    margin-right: 8px;
+  }
+
+.tabs-container {
+    margin: 15px;    
+}
+
+.ui-tabview-selected {
+    background-color: #7d964d !important;
+}
+
+// :host {
+//     ::ng-deep .ui-tabview-selected {        
+//         background-color: brown;
+//     }   
+// } 
