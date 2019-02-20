@@ -22,7 +22,8 @@
     [(ngModel)]="selectedMessage"
     [dataKey]="messageId"
     [style]="{'width':'400px'}"
-    [listStyle]="{'max-height': '400px'}">
+    [listStyle]="{'max-height': '400px'}"
+    (onChange)="handleListChange($event)">
     <p-header>
         <i class="fa fa-smile-o headerIcon"></i>
         <span class="header-text">Encouraging Messages</span>
@@ -46,12 +47,12 @@
 
             <div class="flex-child-container-2">
                 <div>
-                    <span class="received-date">{{ message.dateCreated |
-                        date:'shortDate' }}</span>
+                    <span class="received-date">{{ message.dateCreated | date:'shortDate' }}</span>
                 </div>
                 <div>                    
-                    <i *ngIf="showNotReadIcon(message)" class="fa fa-envelope read-status-icon" matTooltip="Mark as read"></i>
-                    <i *ngIf="!showNotReadIcon(message)" class="fa fa-envelope-open read-status-icon" matTooltip="Mark as not read"></i>
+                    <i *ngIf="showNotReadIcon(message)" [class]="getNotReadClass(message.messageId)" matTooltip="Mark as read"></i>
+                    <i *ngIf="!showNotReadIcon(message)" [class]="getReadClass(message.messageId)" matTooltip="Mark as not read"></i>
+                    
                     <i *ngIf="showArchiveIcon(message)" class="fa fa-archive archive-icon" matTooltip="Archive"></i>
                     <i *ngIf="showFlagIcon(message)" class="fa fa-flag flag-icon" matTooltip="Flag as inappropriate"></i>
                 </div>
@@ -73,6 +74,7 @@
 
     </ng-template>
     <p-footer>
+        This is the footer!
         Selected: {{ selectedMessage || 'none' }}
     </p-footer>
 </p-listbox>

@@ -11,12 +11,8 @@
 //     }
 // } 
 
-.ui-listbox-item {
-    background-color: #7d964d !important;
-}
-
-.message-item {
-    background-color: #7d964d !important;
+body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
+    background-color: #7d964d;
 }
 
 .member-name {
@@ -80,10 +76,19 @@
     text-overflow: ellipsis;
   }
 
-  .read-status-icon {
-      color: #596b37;
+  %read-status-icon {
       font-size: 1.1em;
-      margin-right: 3px;
+      margin-right: 3px;   
+  }
+
+  .read-status-icon-selected {
+    @extend %read-status-icon;
+    color: #e3f5c1;
+  }
+
+  .read-status-icon-unselected {
+    @extend %read-status-icon;
+    color: #596b37;
   }
 
   .archive-icon {

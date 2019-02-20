@@ -1,7 +1,7 @@
 export enum Status {
     Sent,
-    Received,
+    Delivered,
     Read,
-    NotRead,
-    Archived
+    Archived,
+    Flagged
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MessagesService } from '../messages.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { SelectItem } from 'primeng/api';
@@ -28,16 +28,16 @@ interface City {
 //   disabled?: boolean;
 // }
 
- // styleUrls: ['./received-messages.component.scss']
+// styleUrls: ['./received-messages.component.scss']
 @Component({
   selector: 'app-received-messages',
   templateUrl: './received-messages.component.html',
-  styleUrls: ['./received-messages.component.scss']
+  styleUrls: ['./received-messages.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ReceivedMessagesComponent implements OnInit {
 
   messages: MessageReceived[];
-  selectedMessages: string[];
   selectedMessage: MessageReceived;
   panelOpenState = false;
 
@@ -59,7 +59,7 @@ export class ReceivedMessagesComponent implements OnInit {
         this.messages = response;
         this.messages.forEach(element => {
           // PrimeNG listbox requires a 'value' and 'icon' property
-          element.value = element.body;
+          element.value = element.messageId;
           element.icon = element.fromMemberPicUri;
 
           console.log('date created: ' + element.dateCreated);
@@ -83,7 +83,9 @@ export class ReceivedMessagesComponent implements OnInit {
   }
 
   showNotReadIcon(message: MessageReceived) {
-    return message.status !== Status.Read && message.status !== Status.Archived;
+    return message.status !== Status.Read
+      && message.status !== Status.Archived
+      && message.status !== Status.Flagged;
   }
 
   showArchiveIcon(message: MessageReceived) {
@@ -92,6 +94,42 @@ export class ReceivedMessagesComponent implements OnInit {
 
   showFlagIcon(message: MessageReceived) {
     return message.messageHasOpened || message.status === Status.Read;
+  }
+
+  isSelected(message: MessageReceived) {
+    if (message === undefined || message === null) {
+      return false;
+    }
+    if (this.selectedMessage === undefined || this.selectedMessage === null) {
+      return false;
+    }
+    console.log('message id: ' + message.messageId);
+    console.log(this.selectedMessage.fromName);
+    console.log('selectedMessage.messageId: ' + this.selectedMessage.messageId);
+    return message.messageId === this.selectedMessage.messageId;
+    // return true;
+  }
+
+  handleListChange(event) {
+    console.log('onchange event triggered');
+    console.log(this.selectedMessage);
+
+  }
+
+  getNotReadClass(memberId: number) {
+    if (memberId === +this.selectedMessage) {
+      return 'fa fa-envelope read-status-icon-selected';
+    } else {
+      return 'fa fa-envelope read-status-icon-unselected';
+    }
+  }
+
+  getReadClass(memberId: number) {
+    if (memberId === +this.selectedMessage) {
+      return 'fa fa-envelope-open read-status-icon-selected';
+    } else {
+      return 'fa fa-envelope-open read-status-icon-unselected';
+    }
   }
 
 }
