@@ -21,17 +21,20 @@ import { MatDialogModule,
             MatPaginatorModule,
             MatRadioModule,
             MatDatepickerModule,
-            MatNativeDateModule} from '@angular/material';
+            MatNativeDateModule,
+            MatBottomSheetModule} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { MembersRoutingModule } from './members-routing.module';
 import { MemberProfileComponent } from './member-profile/member-profile.component';
-import { FileUploadModule } from '../file-upload/file-upload.module';
+
 import { MemberSettingsComponent } from './member-settings/member-settings.component';
 import { MessagesModule } from '../messages/messages.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DirectoryComponent } from './directory/directory.component';
 import { GroupDirectoryComponent } from './group-directory/group-directory.component';
 import { TabViewModule } from 'primeng/tabview';
+import { FileUploadModule } from 'primeng/fileupload';
+import { PicUploadComponent } from '../file-upload/pic-upload/pic-upload.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +43,7 @@ import { TabViewModule } from 'primeng/tabview';
         MemberSettingsComponent,
         DirectoryComponent,
         GroupDirectoryComponent,
+        PicUploadComponent
     ],
     imports: [
         CommonModule,
@@ -71,7 +75,8 @@ import { TabViewModule } from 'primeng/tabview';
         FormsModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        TabViewModule
+        TabViewModule,
+        MatBottomSheetModule
     ]
 })
 export class MembersModule {

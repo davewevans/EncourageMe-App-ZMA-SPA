@@ -1,0 +1,24 @@
+<h3>{{ data.title }}</h3>
+
+<h4>To: {{ data.firstName }} {{ data.lastName }}</h4>
+<div>
+  <img [src]="data.profilePhotoUri" width="100" height="100" />
+</div>
+
+
+<textarea pInputTextarea [rows]="5" [cols]="30"
+  autoResize="autoResize" [(ngModel)]="data.message"
+  type="text" placeholder="Your Message"></textarea>
+
+<br />
+<button pButton type="submit"
+  class="ui-button-raised ui-button-rounded"
+  icon="pi pi-check" iconPos="left" (click)="onSubmit($event)">
+  Send
+</button>
+
+<button pButton type="submit"
+  class="ui-button-raised ui-button-rounded"
+  icon="pi pi-check" iconPos="left" (click)="onCancel($event)">
+  Cancel
+</button>

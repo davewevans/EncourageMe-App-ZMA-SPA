@@ -5,16 +5,19 @@
 
 <div *ngIf="this.memberProfile !== null && this.memberProfile !== undefined">
     <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-header>          
           <mat-card-title>{{ getFullName() }}</mat-card-title>
           <mat-card-subtitle>{{ getGender() }}</mat-card-subtitle>
         </mat-card-header>
-        <img width="150px" height="150px" [src]="memberProfile.profilePhotoUri" [alt]="getFullName()">
+        <img
+        class="profile-avatar" 
+        [src]="memberProfile.profilePhotoUri" 
+        [alt]="getFullName()">
         <mat-card-content>
           <p> {{ memberProfile.aboutMe }}</p>
-          <p> {{ memberProfile.email }}</p>
-          <p> Birth Date: {{ memberProfile.birthDate | date:'mediumDate' }}</p>
+         
+          <p *ngIf="memberProfile.showBirthdate"> Birth Date: {{ memberProfile.birthDate | date:'mediumDate' }}</p>
+          
           <p> Join Zion Date: {{ memberProfile.joinZionDate | date:'mediumDate' }}</p>
           <p> Wedding Date: {{ memberProfile.weddingDate |  date:'mediumDate'}}</p>
         </mat-card-content>
@@ -24,7 +27,9 @@
         </mat-card-actions> -->
       </mat-card>
 
-      <app-pic-upload></app-pic-upload>
+      <div *ngIf="editMode">
+        <app-pic-upload></app-pic-upload>
+      </div>           
 
 </div>
 

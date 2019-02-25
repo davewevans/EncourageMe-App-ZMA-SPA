@@ -11,6 +11,7 @@ export class MessageReceived implements SelectItem {
     toMemberPicUri: string;
     dateCreated: Date;
     status: Status;
+    flagged: boolean;
     messageOpen: boolean;
     messageHasOpened: boolean;
 

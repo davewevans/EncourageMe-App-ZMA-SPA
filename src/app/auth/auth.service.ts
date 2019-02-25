@@ -15,13 +15,15 @@ import { AuthResponse } from './models/auth-response.model';
 export class AuthService {
 
   BASE_URL = 'http://localhost:57544/api';
-  memId = '';
+
+  // private backing field for memberId property
+  private _memberId = '';
   MEMBER_ID_KEY = 'member-id';
   NAME_KEY = 'name';
   TOKEN_KEY = 'token';
   ROLES_KEY = 'roles';
   FIRST_NAME_KEY = 'first-name';
-  MEMBER_PHOTO_URI = "member-photo-uri";  
+  MEMBER_PHOTO_URI = 'member-photo-uri';
 
   // Roles:
   public ROLE_ADMIN = 'admin';
@@ -93,18 +95,17 @@ export class AuthService {
         JSON.stringify({ userName, password }), httpOptions
       ).pipe(
         map(res => {
-          console.log('res: ' + res);    
-          this.memId = res.memberId;
+          this._memberId = res.memberId;
+          // todo: member id should not be stored in local storage
+          localStorage.setItem(this.MEMBER_ID_KEY, this._memberId);
+
           localStorage.setItem(this.TOKEN_KEY, res.auth_token);
           localStorage.setItem(this.NAME_KEY, res.userName);
           localStorage.setItem(this.FIRST_NAME_KEY, res.firstName);
-          localStorage.setItem(this.MEMBER_ID_KEY, res.memberId);
           localStorage.setItem(this.MEMBER_PHOTO_URI, res.memberPhotoUri);
           localStorage.setItem(this.ROLES_KEY, JSON.stringify(res.roles));
           this.loggedIn = true;
           this.authNavStatusSource.next(true);
-
-          console.log('memberid: ' + this.memId);
 
           return true;
         })
@@ -113,10 +114,12 @@ export class AuthService {
   }
 
   logout() {
+    // todo: member id should not be stored in local storage
+    localStorage.removeItem(this.MEMBER_ID_KEY);
+
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.NAME_KEY);
     localStorage.removeItem(this.FIRST_NAME_KEY);
-    localStorage.removeItem(this.MEMBER_ID_KEY);
     localStorage.removeItem(this.MEMBER_PHOTO_URI);
     localStorage.removeItem(this.ROLES_KEY);
     this.loggedIn = false;
@@ -131,7 +134,10 @@ export class AuthService {
   }
 
    get memberId() {
-    return this.memId;
+    // todo: member id should not be stored in local storage
+    // this is for dev only. Variables are wiped out every compile
+    return localStorage.getItem(this.MEMBER_ID_KEY);
+    // return this._memberId;
   }
 
   get userName() {
@@ -148,6 +154,17 @@ export class AuthService {
 
   get isAuthenticated() {
     return !!localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  updateProfilePhotoUri(memberId) {
+    const mergedUrl = this.BASE_URL + '/memberprofile/GetPhotoPath/' + memberId;
+    this.http.get<string>(mergedUrl).subscribe(
+      result => {
+        localStorage.removeItem(this.MEMBER_PHOTO_URI);
+        localStorage.setItem(this.MEMBER_PHOTO_URI, result);
+        console.log('pic uri: ' + result);
+      }
+    );
   }
 
   isInRole(role: string) {

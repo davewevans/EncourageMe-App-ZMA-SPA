@@ -38,8 +38,6 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { MessagesModule } from './messages/messages.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MainNavComponent } from './main-nav/main-nav.component';
-import { PicUploadComponent } from './file-upload/pic-upload/pic-upload.component';
-import { FileUploadModule } from './file-upload/file-upload.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
@@ -47,6 +45,9 @@ import { ButtonModule } from 'primeng/button';
 import { PrimengTestComponent } from './primeng-test/primeng-test.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ColorSchemesComponent } from './color-schemes/color-schemes.component';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 // Rollbar config
 // https://rollbar.com/helloworldsuperdave/encourageme
@@ -81,7 +82,9 @@ export class RollbarErrorHandler implements ErrorHandler {
     ForbiddenComponent,
     MainNavComponent,
     PrimengTestComponent,
-    ColorSchemesComponent
+    ColorSchemesComponent,
+    ConfirmDialogComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +115,6 @@ export class RollbarErrorHandler implements ErrorHandler {
     MessagesModule,
     LayoutModule,
     MatListModule,
-    FileUploadModule,
     DropdownModule,
     SplitButtonModule,
     MenuModule,
@@ -127,11 +129,12 @@ export class RollbarErrorHandler implements ErrorHandler {
       useClass: HttpErrorInterceptor,
       multi: true
       },
+      ConfirmationService
       // Rollbar error handler providers
       // { provide: ErrorHandler, useClass: RollbarErrorHandler },
       // { provide: RollbarService, useFactory: rollbarFactory }
   ],
-  entryComponents: [DialogOverviewExampleDialog],
+  entryComponents: [DialogOverviewExampleDialog, ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,6 +22,7 @@ export class MemberSettingsComponent implements OnInit {
   buttonsDisabled = true;
   @ViewChild('editSlide')
   matSlideToggle: MatSlideToggle;
+  private _memberId = '';
 
   constructor(private fb: FormBuilder, private dataService: DataService) { }
 
@@ -63,6 +64,7 @@ export class MemberSettingsComponent implements OnInit {
         this.memberSettings.birthdate = new Date(result.birthdate);
         this.memberSettings.weddingDate = new Date(result.weddingDate);
         this.memberSettings.joinZionDate = new Date(result.joinZionDate);
+        this._memberId = result.memberId;
         this.setInitialValues();
       }
     );
@@ -71,6 +73,7 @@ export class MemberSettingsComponent implements OnInit {
   updateMemberSettings() {
 
     const newSettings: MemberSettings = {
+      memberId: this._memberId,
       gender: this.settingsForm.get('gender').value === 'male' ? 0 : 1,
       firstName: this.settingsForm.get('firstName').value,
       lastName: this.settingsForm.get('lastName').value,
@@ -88,6 +91,7 @@ export class MemberSettingsComponent implements OnInit {
       showBirthdate: this.settingsForm.get('showBirthdate').value
     };
 
+    // todo this is called twice ???
     this.dataService.updateMemberSettings(newSettings).subscribe();
   }
 

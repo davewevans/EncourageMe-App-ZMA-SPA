@@ -14,6 +14,7 @@ const memberRoutes: Routes = [
     { path: 'member-directory', component: MemberDirectoryComponent,
         canActivate: [AuthGuard], data: { roles: ['member'] } },
     { path: 'member-profile', component: MemberProfileComponent, canActivate: [AuthGuard], data: { roles: ['member'] }  },
+    { path: 'member-profile/:id', component: MemberProfileComponent, canActivate: [AuthGuard], data: { roles: ['member'] }  },
     { path: 'member-settings', component: MemberSettingsComponent, canActivate: [AuthGuard], data: { roles: ['member'] }  },
 ];
 

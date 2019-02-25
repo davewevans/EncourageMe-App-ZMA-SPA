@@ -1,4 +1,5 @@
 export interface MemberProfile {
+    memberId: string;
     firstName: string;
     lastName: string;
     aboutMe: string;
@@ -6,6 +7,7 @@ export interface MemberProfile {
     mobilePhoneNumber: string;
     gender: number;
     birthDate: Date;
+    showBirthdate: boolean;
     joinZionDate: Date;
     weddingDate: Date;
     primaryPhotoUri: string;

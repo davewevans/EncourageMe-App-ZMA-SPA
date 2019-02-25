@@ -14,7 +14,6 @@ import { HeaderComponent } from './header/header.component';
 import { CommonModule } from '@angular/common';
 import { MessagesModule } from '../messages/messages.module';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FileUploadModule } from '../file-upload/file-upload.module';
 import { RegisterComponent } from '../auth/register/register.component';
 import { AuthModule } from '../auth/auth.module';
 
@@ -36,7 +35,6 @@ import { AuthModule } from '../auth/auth.module';
         LayoutModule,
         MatListModule,
         MatSidenavModule,
-        FileUploadModule,
         AuthModule,
         MatIconModule
     ],

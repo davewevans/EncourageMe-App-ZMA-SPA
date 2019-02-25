@@ -7,7 +7,10 @@ import { MatListModule,
   MatIconModule,
   MatExpansionModule,
   MatToolbarModule,
-  MatTooltipModule } from '@angular/material';
+  MatTooltipModule,
+  MatSnackBarModule,
+  MatProgressSpinnerModule,
+  MatButtonModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 import { SentMessagesComponent } from './sent-messages/sent-messages.component';
@@ -16,7 +19,11 @@ import { SendMessageDialogComponent } from './send-message-dialog/send-message-d
 import { ListboxModule } from 'primeng/listbox';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { Expansion } from '@angular/compiler';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { SendMessageComponent } from './send-message/send-message.component';
+import { SendMessageSheetComponent } from './send-message-sheet/send-message-sheet.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   imports: [
@@ -30,19 +37,29 @@ import { Expansion } from '@angular/compiler';
     MatIconModule,
     AngularFontAwesomeModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ConfirmDialogModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    InputTextareaModule,
+    ButtonModule
   ],
   declarations: [
     ReceivedMessagesComponent,
     SentMessagesComponent,
-    SendMessageDialogComponent
+    SendMessageDialogComponent,
+    SendMessageComponent,
+    SendMessageSheetComponent
   ],
   exports: [
     ReceivedMessagesComponent,
     SentMessagesComponent
   ],
   entryComponents: [
-    SendMessageDialogComponent
+    SendMessageDialogComponent,
+    SendMessageComponent,
+    SendMessageSheetComponent
   ]
 })
 export class MessagesModule { }

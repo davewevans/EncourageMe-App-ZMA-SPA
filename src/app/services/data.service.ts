@@ -10,6 +10,7 @@ import { MemberProfile } from '../members/models/member-profile.model';
 import { SendMessageFormData } from '../messages/models/send-message-form-data.model';
 import { MemberSettings } from '../members/models/member-settings.model';
 import { Group } from '../members/models/group.model';
+import { SendMessage } from '../messages/models/send-message.model';
 // import { of } from 'rxjs/observable/of';
 
 @Injectable({
@@ -29,15 +30,14 @@ export class DataService {
     // this.headers = this.headers.set('Accept', 'application/json');
    }
 
-   getMemberProfile() {
-    const memberId = localStorage.getItem(this.auth.MEMBER_ID_KEY);
+   getMemberProfile(id = null) {
+
+    const memberId = id === null ? this.auth.memberId : id;
 
     // Allow CORS
     this.headers = this.headers.set('Access-Control-Allow-Origin', '*');
 
     const mergedUrl = this.BASE_URL + '/memberprofile/' + memberId;
-
-    console.log('mergedUrl: ' +  mergedUrl);
 
     return this.http.get<MemberProfile>(mergedUrl, {
       headers: this.headers
@@ -68,13 +68,13 @@ export class DataService {
     return this.http.get<Group[]>(mergedUrl);
   }
 
-  sendMessage(result: SendMessageFormData) {
+  sendMessage(result: SendMessage) {
     console.log('sendMessage: ' + result.message);
 
-    result.fromMemberId = localStorage.getItem(this.auth.MEMBER_ID_KEY);
+    result.fromMemberId = this.auth.memberId;
 
     const messageData = {
-      'toMemberId': result.memberId,
+      'toMemberId': result.toMemberId,
       'fromMemberId': result.fromMemberId,
       'body': result.message
     };
@@ -86,16 +86,17 @@ export class DataService {
 
     console.log('getMemberSettings() memberId: ' + this.auth.memberId);
 
-    const memberId = localStorage.getItem(this.auth.MEMBER_ID_KEY);
+    const memberId = this.auth.memberId;
     const mergedUrl = this.BASE_URL + '/membersettings/' + memberId;
     return this.http.get<MemberSettings>(mergedUrl);
   }
 
   updateMemberSettings(settings: MemberSettings) {
-    const memberId = localStorage.getItem(this.auth.MEMBER_ID_KEY);
+    const memberId = this.auth.memberId;
     const mergedUrl = this.BASE_URL + '/membersettings/' + memberId;
     return this.http.put(mergedUrl, settings);
   }
+
 
   handleError(errorMsg, error) {
     console.error(errorMsg, error);

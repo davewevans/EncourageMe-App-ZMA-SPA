@@ -14,28 +14,29 @@
     [mode]="mode"
     [value]="value">
   </mat-progress-spinner>
-
 </div>
 
 <div class="grid-container">
   <div class="child-container" *ngFor="let member of members$ | async">
-    <div>
-      <div *ngIf="!hasProfilePhotoUri(member)" [ngSwitch]="member.gender">
+    <a [routerLink]="getMemberProfileUrl(member)">
+      <div>
+        <div *ngIf="!hasProfilePhotoUri(member)" [ngSwitch]="member.gender">
           <i *ngSwitchCase="0" class="fa fa-male default-profile-icon"></i>
           <i *ngSwitchCase="1" class="fa fa-female default-profile-icon"></i>
           <i *ngSwitchDefault class="fa fa-user default-profile-icon"></i>
+        </div>
+
+
+        <img *ngIf="hasProfilePhotoUri(member)"
+          class="avatar-125 img-member" [src]="member.profilePhotoUri" />
       </div>
-      
-        
-      <img *ngIf="hasProfilePhotoUri(member)"
-        class="avatar-125 img-member" [src]="member.profilePhotoUri" />
-    </div>
+    </a>
     <div class="member-name">
       {{member.firstName}} {{member.lastName}}
     </div>
     <div>
       <button class="btn-encourage"
-        (click)="openSendMessageDialog(member)">encourage {{
+        (click)="onSendMessage(member)">encourage {{
         getGenderPronoun(member.gender) }}</button>
     </div>
   </div>

@@ -47,15 +47,17 @@ body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
 }
 
 .flex-child-container-2 {
-    display: flex;
-    flex-direction: column;    
-    // justify-content: flex-end;
+    // display: flex;
+    // flex-direction: column;    
+    align-self: auto;
+    margin-top: 15px;
+    margin-right: 10px;
 }
 
 .header-text {
     font-weight: bold;
-    margin-left: 10px;
-    font-size: 1.5em;
+    margin-left: 5px;
+    font-size: 1em;
 }
 
 .headerIcon {
@@ -70,7 +72,7 @@ body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
 
 .truncate {
     display: block;
-    width: 225px;
+    width: 150px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -78,12 +80,12 @@ body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
 
   %read-status-icon {
       font-size: 1.1em;
-      margin-right: 3px;   
+      margin-right: 0px;   
   }
 
   .read-status-icon-selected {
     @extend %read-status-icon;
-    color: #e3f5c1;
+    color: #eef9da;
   }
 
   .read-status-icon-unselected {
@@ -91,15 +93,61 @@ body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
     color: #596b37;
   }
 
-  .archive-icon {
-    color: #242b16;
-    margin-right: 3px;
+  %archive-icon {    
+    margin-right: 0px;
+  }
+
+  .archive-icon-selected {
+    @extend %archive-icon;
+    color: #e7d4b9;
+  }
+
+  .archive-icon-unselected {
+    @extend %archive-icon;
+    color: #a58855;
   }
 
   .flag-icon {
     color: crimson;
 
   }
+
+  /* Style icon buttons */
+.btn-icon {
+  background-color: transparent; 
+  border: none;
+  width: 20px;
+  height: 20px;
+}
+
+/* Darker background on mouse-over */
+.btn-icon:hover {
+  border: none; 
+}
+
+
+// ::ng-deep snack-bar-container.my-snackbar {
+//   background: yellow;
+// }
+
+// ::ng-deep .my-snackbar .mat-simple-snackbar {
+//   color: green;
+// }
+
+.custom-snack-bar {
+  background-color: #242b16;  
+  .mat-button-wrapper {
+  color: #c3eb78;
+  }
+}
+
+
+.spinner-container {
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+
 
 
 

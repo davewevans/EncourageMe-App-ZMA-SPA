@@ -1,4 +1,5 @@
 export interface MemberSettings {
+    memberId: string;
     firstName: string;
     lastName: string;
     gender: number;

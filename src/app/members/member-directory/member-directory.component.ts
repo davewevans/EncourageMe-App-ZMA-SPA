@@ -6,13 +6,16 @@ import { DataService } from '../../services/data.service';
 import { Observable, of, BehaviorSubject, Subject, fromEvent } from 'rxjs';
 import { catchError, finalize, tap, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { PaginationService } from '../../services/pagination.service';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatBottomSheetConfig } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SendMessageDialogComponent } from 'src/app/messages/send-message-dialog/send-message-dialog.component';
 import { SendMessageFormData } from 'src/app/messages/models/send-message-form-data.model';
 import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
 import { MembersService } from '../members.service';
-
+import { SendMessageComponent } from 'src/app/messages/send-message/send-message.component';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
+import { SendMessageSheetComponent } from 'src/app/messages/send-message-sheet/send-message-sheet.component';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-member-directory',
@@ -31,7 +34,7 @@ export class MemberDirectoryComponent implements OnInit, AfterViewInit {
   counter = 1;
 
   // app spinner config
-  color = 'accent';
+  color = 'primary';
   mode = 'indeterminate';
   value = 50;
 
@@ -42,7 +45,10 @@ export class MemberDirectoryComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInput') searchInput: ElementRef;
 
   constructor(private dataService: DataService,
-    private paginationService: PaginationService, private dialog: MatDialog) { }
+    private paginationService: PaginationService,
+    private dialog: MatDialog,
+    private bottomSheet: MatBottomSheet,
+    private auth: AuthService) { }
 
   ngOnInit() {
     // this.dataSource = new MemberDataSource(this.dataService);
@@ -76,7 +82,7 @@ export class MemberDirectoryComponent implements OnInit, AfterViewInit {
     // console.info("page: " + this.paginationService.page);
     // console.info("pageCount: " + this.paginationService.pageSize);
 
-     this.members$ = this.dataService.getMembers(filter, sortDirection,
+    this.members$ = this.dataService.getMembers(filter, sortDirection,
       this.paginationService.page, this.paginationService.pageSize)
       .pipe(
         tap((response: HttpResponse<Member[]>) => {
@@ -119,21 +125,19 @@ export class MemberDirectoryComponent implements OnInit, AfterViewInit {
 
     const dialogRef = this.dialog.open(SendMessageDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(
-      result => {
-        if (result.sendMessage) {
-          this.sendMessage(result);
-        }
-
-        console.log(result);
-      });
+    // dialogRef.afterClosed().subscribe(
+    //   result => {
+    //     if (result !== undefined && result.sendMessage) {
+    //       this.sendMessage(result);
+    //     }
+    //   });
   }
 
-  sendMessage(result: SendMessageFormData) {
-      console.log('toMemberId: ' + result.memberId);
-      console.log('message: ' + result.message);
-      this.dataService.sendMessage(result).subscribe();
-  }
+  // sendMessage(result: SendMessageFormData) {
+  //   console.log('toMemberId: ' + result.memberId);
+  //   console.log('message: ' + result.message);
+  //   this.dataService.sendMessage(result).subscribe();
+  // }
 
   getGenderPronoun(gender) {
     if (gender === 0) {
@@ -153,5 +157,35 @@ export class MemberDirectoryComponent implements OnInit, AfterViewInit {
     } else {
       return true;
     }
+  }
+
+  getMemberProfileUrl(member: Member) {
+    return '/member-profile/' + member.memberId;
+  }
+
+  onSendMessage(member: Member) {
+
+    const sendMessageData = {
+      title: 'Send Encouraging Message',
+      firstName: member.firstName,
+      lastName: member.lastName,
+      profilePhotoUri: member.profilePhotoUri,
+      toMemberId: member.memberId,
+      message: '',
+      fromMemberId: this.auth.memberId,
+    };
+
+    const config: MatBottomSheetConfig = new MatBottomSheetConfig();
+    config.ariaLabel = 'Send an encouraging message';
+    config.data = sendMessageData;
+    config.closeOnNavigation = true;
+    const bottomSheetRef: MatBottomSheetRef =
+      this.bottomSheet.open(SendMessageSheetComponent, config);
+
+    bottomSheetRef.afterDismissed().subscribe(() => {
+      console.log('Bottom sheet has been dismissed.');
+    });
+
+    // bottomSheetRef.dismiss();
   }
 }

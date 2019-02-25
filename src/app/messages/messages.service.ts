@@ -11,13 +11,14 @@ export class MessagesService {
 
   private BASE_URL = 'http://localhost:57544/api';
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient,
+    private auth: AuthService) { }
 
   getReceivedMessages() {
 
     const mergedUrl = this.BASE_URL + '/messages' + '/receivedMessages';
 
-    const memberId = localStorage.getItem(this.auth.MEMBER_ID_KEY);
+    const memberId = this.auth.memberId;
     const token = localStorage.getItem(this.auth.TOKEN_KEY);
 
     return this.http.get<MessageReceived[]>(mergedUrl, {
@@ -33,7 +34,7 @@ export class MessagesService {
   getSentMessages() {
     const mergedUrl = this.BASE_URL + '/messages' + '/sentMessages';
 
-    const memberId = localStorage.getItem(this.auth.MEMBER_ID_KEY);
+    const memberId = this.auth.memberId;
     const token = localStorage.getItem(this.auth.TOKEN_KEY);
 
     return this.http.get<MessageSent[]>(mergedUrl, {
@@ -44,6 +45,15 @@ export class MessagesService {
       params: new HttpParams()
         .set('memberId', memberId)
     });
+  }
+
+  updateMessageReceived(message: MessageReceived) {
+    const mergedUrl = this.BASE_URL + '/messages/' + message.messageId;
+    return this.http.put(mergedUrl, message);
+  }
+
+  updateMessageSent(message: MessageSent) {
+
   }
 
 }

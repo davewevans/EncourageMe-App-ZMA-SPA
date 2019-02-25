@@ -1,33 +1,23 @@
-<!-- 
- <p-listbox [options]="cars" [(ngModel)]="selectedCar">
-    <p-header>
-      <i class="fa fa-car"></i>
-      List of Car
-    </p-header>
-    <ng-template let-car let-i="index" pTemplate="item">
-        <div class="ui-helper-clearfix">
-            <img src="assets/showcase/images/demo/car/{{car.label}}.png" 
-            style="display:inline-block;margin:5px 0 0 5px" width="48">
-            <span style="float:right;margin:20px 10px 0 0">{{i}} - {{car.value}}</span>
-        </div>
-    </ng-template>
-    <p-footer>
-        Selected: {{selectedCar||'none'}}
-    </p-footer>
-</p-listbox> -->
 
-<!-- styleClass="prime-listbox prime-listbox-header" -->
+<div class="spinner-container" *ngIf="loading$ | async">
+    <mat-progress-spinner
+        [color]="color"
+        [mode]="mode"
+        [value]="value">
+    </mat-progress-spinner>
+</div>
 
-<p-listbox [options]="messages"
+<p-listbox *ngIf="!(loading$ | async)" [options]="messages"
     [(ngModel)]="selectedMessage"
     [dataKey]="messageId"
     [style]="{'width':'400px'}"
     [listStyle]="{'max-height': '400px'}"
     (onChange)="handleListChange($event)">
+
     <p-header>
-        <i class="fa fa-smile-o headerIcon"></i>
         <span class="header-text">Encouraging Messages</span>
     </p-header>
+
     <ng-template let-message let-i="index" pTemplate="item">
         <div class="flex-container-1">
             <div>
@@ -38,32 +28,47 @@
 
             <div class="flex-child-container-1">
                 <div>
-                    <span class="member-name">{{ message.fromName }}</span><br />
+                    <span class="member-name">{{ message.fromName }}</span>
                 </div>
                 <div>
-                    <span class="message-body truncate">{{ message.body }}</span>
+                    <!-- <span class="message-body truncate">{{ message.body }}</span> -->
+                    <span class="received-date">
+                        {{ message.dateCreated | date:'fullDate' }}</span>
                 </div>
             </div>
 
             <div class="flex-child-container-2">
                 <div>
-                    <span class="received-date">{{ message.dateCreated | date:'shortDate' }}</span>
-                </div>
-                <div>                    
-                    <i *ngIf="showNotReadIcon(message)" [class]="getNotReadClass(message.messageId)" matTooltip="Mark as read"></i>
-                    <i *ngIf="!showNotReadIcon(message)" [class]="getReadClass(message.messageId)" matTooltip="Mark as not read"></i>
-                    
-                    <i *ngIf="showArchiveIcon(message)" class="fa fa-archive archive-icon" matTooltip="Archive"></i>
-                    <i *ngIf="showFlagIcon(message)" class="fa fa-flag flag-icon" matTooltip="Flag as inappropriate"></i>
+                    <button *ngIf="showNotReadIcon(message)" class="btn-icon"
+                        type="button" (click)="changeReadStatus(message, 2)">
+                        <i [class]="getNotReadClass(message.messageId)"
+                            matTooltip="Mark as read"></i>
+                    </button>
+                    <button *ngIf="!showNotReadIcon(message)" class="btn-icon"
+                        type="button" (click)="changeReadStatus(message, 1)">
+                        <i [class]="getReadClass(message.messageId)"
+                            matTooltip="Mark as not read"></i>
+                    </button>
+                    <button *ngIf="showArchiveIcon(message)" class="btn-icon"
+                        type="button" (click)="archiveMessage(message)">
+                        <i [class]="getArchiveIconClass(message.messageId)"
+                            matTooltip="Archive"></i>
+                    </button>
+                    <button *ngIf="showFlagIcon(message)" class="btn-icon"
+                        type="button" (click)="flagMessage(message)">
+                        <i class="fa fa-flag flag-icon" matTooltip="Flag as
+                            inappropriate"></i>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <mat-expansion-panel (opened)="openMessage(message)"
-                             (closed)="closeMessage(message)">
+        <mat-expansion-panel [expanded]="message.messageOpen"
+            (opened)="openMessage(message)"
+            (closed)="closeMessage(message)">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    
+
                 </mat-panel-title>
                 <mat-panel-description>
                     {{ message.messageOpen ? 'close' : 'open'}} message
@@ -77,35 +82,5 @@
         This is the footer!
         Selected: {{ selectedMessage || 'none' }}
     </p-footer>
+
 </p-listbox>
-
-
-
-
-
-<!-- <mat-selection-list>
-    <mat-list-option *ngFor="let message of messages">
-        {{ message.fromName }}
-    <h3 matLine> {{ message.fromName }} </h3>
-        <img matListAvatar [src]="message.fromMemberPicUri" [alt]="message.fromName">
-    
-        <p matLine>
-          <span> {{ message.body }} </span>
-        </p>
-        <fa name="home"></fa>         
-       
-    </mat-list-option>
-  </mat-selection-list>  -->
-<!-- <mat-list>
-  <mat-list-item *ngFor="let message of messages">
-
-    <h3 matLine> {{ message.fromName }} </h3>
-    <img matListAvatar [src]="message.fromMemberPicUri" [alt]="message.fromName">
-
-    <p matLine>
-      <span> {{ message.body }} </span>
-    </p>
-    <fa name="home"></fa>    
-
-  </mat-list-item>
-</mat-list> -->
