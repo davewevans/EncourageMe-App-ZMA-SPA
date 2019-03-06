@@ -7,3 +7,37 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.emojiMenu {
+  margin-top: 400px;
+  margin-left: 200px;
+}
+
+.emoji-mart {
+  margin-top: 16px;
+}
+
+.emoji-mart-header {
+  background-color: aquamarine;
+}
+
+.close { 
+  width: 16px;
+  height: 16px;
+  margin-top: 8px;
+  margin-right: 16px;
+  color: gray; 
+  text-align: right; 
+}
+
+.close:hover {
+  color: black
+}
+
+.close:focus {
+  outline: none;
+}
+
+.overlay-panel {
+  margin-top: 300px;
+}

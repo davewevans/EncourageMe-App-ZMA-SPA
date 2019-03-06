@@ -24,6 +24,7 @@ import { SendMessageComponent } from './send-message/send-message.component';
 import { SendMessageSheetComponent } from './send-message-sheet/send-message-sheet.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
+import { CustomDirectivesModule } from '../custom-directives/custom-directives.module';
 
 @NgModule({
   imports: [
@@ -43,14 +44,15 @@ import { ButtonModule } from 'primeng/button';
     MatProgressSpinnerModule,
     MatButtonModule,
     InputTextareaModule,
-    ButtonModule
+    ButtonModule,
+    CustomDirectivesModule    
   ],
   declarations: [
     ReceivedMessagesComponent,
     SentMessagesComponent,
     SendMessageDialogComponent,
     SendMessageComponent,
-    SendMessageSheetComponent
+    SendMessageSheetComponent    
   ],
   exports: [
     ReceivedMessagesComponent,

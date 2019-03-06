@@ -17,7 +17,7 @@ export class MemberSettingsComponent implements OnInit {
   memberSettings: MemberSettings;
   maxLength: 50;
   genders = ['male', 'female'];
-  color = 'accent';
+  color = 'primary';
   editMode = false;
   buttonsDisabled = true;
   @ViewChild('editSlide')

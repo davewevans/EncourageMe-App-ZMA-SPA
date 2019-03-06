@@ -1,0 +1,43 @@
+<p>
+  ng-material-test works!
+</p>
+
+
+
+  <button mat-button
+    [matMenuTriggerFor]="menu"
+    [disableRipple]="true">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+    <button mat-menu-item>Item 3</button>
+  </mat-menu>
+
+
+  <div class="emojiMenu">
+    <button mat-button
+      [matMenuTriggerFor]="emojiMenu"
+      [disableRipple]="true">Menu</button>
+    <mat-menu #emojiMenu="matMenu">
+      <div class="emoji-mart-header">
+        <div>
+          <button type="button" class="close" (click)="onClose($event)">
+            <fa name="close"></fa>
+          </button>
+        </div>
+
+        <div class="emoji-mart">
+          <emoji-mart title="Pick an emoji"
+            perLine="7"
+            color="#596b37"
+            sheetSize="64"
+            emoji="point_up"
+            skin="6"
+            emojiTooltip="true"
+            (emojiClick)="addEmoji($event)"></emoji-mart>
+        </div>
+      </div>
+
+
+    </mat-menu>
+  </div>

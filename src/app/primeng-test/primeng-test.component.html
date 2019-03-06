@@ -11,19 +11,72 @@
 </button>
 <p></p>
 
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      This is the expansion title
-    </mat-panel-title>
-    <mat-panel-description>
-      This is a summary of the content
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <p>This is the primary content of the panel.</p>
-</mat-expansion-panel>
+<p-menu #menu2 [popup]="true" appendTo="body">
+  <p>Test!</p>
+</p-menu>
+<button type="button"
+  pButton icon="pi pi-cog"
+  label="Test"
+  (click)="menu2.toggle($event)">
+</button>
 
-<p></p>
+<ngx-emoji [emoji]="{ id: 'santa', skin: 3 }" size="16"></ngx-emoji>
+<ngx-emoji emoji=':santa::skin-tone-3:' size="16"></ngx-emoji>
+<ngx-emoji emoji='santa' set='emojione' size="16"></ngx-emoji>
+<ngx-emoji emoji=':female-teacher::skin-tone-5:' size="16" tooltip="true"></ngx-emoji>
+
+<ngx-emoji emoji=':blush:' size="16" tooltip="true"></ngx-emoji>
+
+
+<div class="overlay-panel">
+  <p-overlayPanel #op [showCloseIcon]="true">
+
+    <div class="emoji-mart">
+      <emoji-mart title="Pick an emoji"
+        perLine="7"
+        totalFrequentLines="2"
+        color="#596b37"
+        sheetSize="64"
+        emoji="point_up"
+        set='google'
+        emojiTooltip="true"
+        (emojiClick)="addEmoji($event)">
+      </emoji-mart>
+    </div>
+
+  </p-overlayPanel>
+  <button type="text" 
+    pButton label="Emoji Mart" 
+    (click)="togglePicker($event, op)">
+  </button>
+
+
+</div>
+<!-- [value]="textareaData | emojify" -->
+<!-- <textarea id="textarea-emoji" #textareaEmoji [innerHTML]="textareaData | safeHtml">
+</textarea> -->
+
+<textarea id="textarea-emoji" #textareaEmoji [value]="textareaData | emojify">
+    
+</textarea>
+
+
+<!-- <div id="divTest" [innerHtml]="textareaData | safeHtml">
+  
+</div> -->
+
+<div id="divTest2" ng-bind-html="emojiTest">
+  divTest2
+</div>
+
+<div ng-bind-html="emojiTest">
+    
+  </div>
+
+
+<!-- <p [innerHTML]="textareaData | safeHtml"></p>
+<p>{{ textareaData | safeHtml }}</p>
+<p [innerHTML]="emojiTest"></p> -->
 
 <mat-card>
   <mat-card-content>

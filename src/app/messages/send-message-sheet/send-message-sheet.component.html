@@ -1,24 +1,46 @@
-<h3>{{ data.title }}</h3>
+<div class="container">
 
-<h4>To: {{ data.firstName }} {{ data.lastName }}</h4>
-<div>
-  <img [src]="data.profilePhotoUri" width="100" height="100" />
+  <div class="header">
+    <span class="title">{{ data.title }}</span>
+  </div>
+
+  <div>
+    <span class="to-name">To: {{ data.firstName }} {{ data.lastName }}</span>
+  </div>
+
+  <div>
+    <button type="button" class="close" (click)="onClose($event)">
+      <fa name="close"></fa>
+    </button>
+  </div>
+
+  <div class="item-c">
+    <div>
+      <img [src]="data.profilePhotoUri" class="avatar-100" />
+    </div>
+
+    <div>
+      
+      <textarea
+        appAutoFocus rows="10" cols="30"
+        spellcheck="true"        
+        autoResize="vertical" 
+        [(ngModel)]="data.message"
+        type="text" 
+        placeholder="Enter your message">
+      </textarea>
+    </div>
+
+  </div>
+
+
+  <div class="item-d"><button mat-raised-button type="submit"
+      class="btn-submit"
+      matTooltip="Send Message"
+      color="primary"
+      (click)="onSubmit($event)">
+      <span class="btn-text">Send <fa name="send"></fa></span>
+    </button></div>
+
 </div>
-
-
-<textarea pInputTextarea [rows]="5" [cols]="30"
-  autoResize="autoResize" [(ngModel)]="data.message"
-  type="text" placeholder="Your Message"></textarea>
-
-<br />
-<button pButton type="submit"
-  class="ui-button-raised ui-button-rounded"
-  icon="pi pi-check" iconPos="left" (click)="onSubmit($event)">
-  Send
-</button>
-
-<button pButton type="submit"
-  class="ui-button-raised ui-button-rounded"
-  icon="pi pi-check" iconPos="left" (click)="onCancel($event)">
-  Cancel
-</button>
+<!-- <button type="button" (click)="test()">Test</button> -->

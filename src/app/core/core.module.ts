@@ -16,12 +16,15 @@ import { MessagesModule } from '../messages/messages.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RegisterComponent } from '../auth/register/register.component';
 import { AuthModule } from '../auth/auth.module';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { CustomDirectivesModule } from '../custom-directives/custom-directives.module';
+
 
 @NgModule({
     declarations: [
         HomeComponent,
         HeaderComponent,
-        AboutComponent,
+        AboutComponent
         // RegisterComponent
     ],
     imports: [
@@ -36,7 +39,9 @@ import { AuthModule } from '../auth/auth.module';
         MatListModule,
         MatSidenavModule,
         AuthModule,
-        MatIconModule
+        MatIconModule,
+        PickerModule,
+        CustomDirectivesModule
     ],
     exports: [AppRoutingModule,
         HeaderComponent],

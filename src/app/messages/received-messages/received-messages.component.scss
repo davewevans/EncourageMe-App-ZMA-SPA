@@ -109,7 +109,6 @@ body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
 
   .flag-icon {
     color: crimson;
-
   }
 
   /* Style icon buttons */
@@ -123,6 +122,10 @@ body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
 /* Darker background on mouse-over */
 .btn-icon:hover {
   border: none; 
+}
+
+.btn-icon:focus {
+  outline: none;
 }
 
 
@@ -145,6 +148,7 @@ body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
 .spinner-container {
   margin-top: 100px;
   margin-left: 50px;
+  width: 400px;
 }
 
 

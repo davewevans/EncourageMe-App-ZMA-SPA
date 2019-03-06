@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef, ViewChild, AfterViewInit, AfterContentInit, ViewEncapsulation } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material';
 import { SendMessage } from '../models/send-message.model';
 import { DataService } from 'src/app/services/data.service';
@@ -12,13 +12,15 @@ import { DataService } from 'src/app/services/data.service';
 export class SendMessageSheetComponent implements OnInit {
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: SendMessage,
-  private bottomSheetRef: MatBottomSheetRef<SendMessageSheetComponent>,
-  private dataService: DataService) { }
+    private bottomSheetRef: MatBottomSheetRef<SendMessageSheetComponent>,
+    private dataService: DataService) { }
 
   ngOnInit() {
 
-    console.log('sheet on init');
-    console.log('name: ' + this.data.firstName);
+  }
+
+  test() {
+    console.log('test');
   }
 
   sendMessage() {
@@ -40,6 +42,11 @@ export class SendMessageSheetComponent implements OnInit {
   }
 
   onCancel(event) {
+    this.bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
+
+  onClose(event) {
     this.bottomSheetRef.dismiss();
     event.preventDefault();
   }

@@ -21,7 +21,7 @@
           <mat-radio-group class="radio-group"
             formControlName="gender">
             <mat-radio-button
-              class="radio-button"
+              [color]="color"
               *ngFor="let gender of genders"
               [value]="gender">
               {{ gender }}

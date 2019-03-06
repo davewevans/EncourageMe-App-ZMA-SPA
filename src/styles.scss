@@ -5,6 +5,24 @@
 @import "assets/css/material-icons.css";
 @import "assets/css/avatar";
 @import "assets/css/confirmation";
+@import "~@ctrl/ngx-emoji-mart/picker";
 
+textarea:focus {
+    outline-color: green;
+}
 
+button:focus {
+    outline-color: green;
+}
 
+input:focus {
+    outline-color: green;
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+}
+
+.custom-bottom-sheet-container .mat-bottom-sheet-container {
+  padding: 0;
+}

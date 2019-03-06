@@ -21,7 +21,7 @@ import {
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatDialogModule,
-  MatExpansionModule,
+  MatExpansionModule,  
   MAT_DIALOG_DATA, MatListModule, MatDatepickerModule
 } from '@angular/material';
 import { AppComponent } from './app.component';
@@ -48,6 +48,14 @@ import { ColorSchemesComponent } from './color-schemes/color-schemes.component';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { NgMaterialTestComponent } from './ng-material-test/ng-material-test.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { CustomPipesModule } from './custom-pipes/custom-pipes.module';
+import { EmojifyModule } from 'angular-emojify';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+
+
 
 // Rollbar config
 // https://rollbar.com/helloworldsuperdave/encourageme
@@ -84,7 +92,8 @@ export class RollbarErrorHandler implements ErrorHandler {
     PrimengTestComponent,
     ColorSchemesComponent,
     ConfirmDialogComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    NgMaterialTestComponent
   ],
   imports: [
     BrowserModule,
@@ -121,6 +130,11 @@ export class RollbarErrorHandler implements ErrorHandler {
     ButtonModule,
     MatMenuModule,
     MatExpansionModule,
+    PickerModule,
+    OverlayPanelModule,
+    CustomPipesModule,
+    EmojifyModule,
+    EmojiModule,
   ],
   providers: [
      // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

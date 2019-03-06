@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // import { MemberDataSource } from '../../services/member.datasource';
 import { Member } from 'src/app/members/models/member.model';
@@ -109,7 +109,7 @@ export class MemberDirectoryComponent implements OnInit, AfterViewInit {
     console.log(member.firstName + ' ' + member.lastName);
 
     const dialogConfig = new MatDialogConfig();
-
+    dialogConfig.panelClass = 'custom-dialog-container';
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     // dialogConfig.width = '450px';
@@ -179,6 +179,7 @@ export class MemberDirectoryComponent implements OnInit, AfterViewInit {
     config.ariaLabel = 'Send an encouraging message';
     config.data = sendMessageData;
     config.closeOnNavigation = true;
+    config.panelClass = 'custom-bottom-sheet-container';
     const bottomSheetRef: MatBottomSheetRef =
       this.bottomSheet.open(SendMessageSheetComponent, config);
 

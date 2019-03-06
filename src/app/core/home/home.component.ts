@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -8,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild('emojiPlay') emojiPlay: ElementRef;
+
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  test() {
+
+  }
+
+  addEmoji(event) {
+    console.log('addEmoji');
+    console.log(event);
+    console.log(event.emoji.name);
+    console.log(event.emoji.text);
+    console.log(event.emoji.unified);
 
   }
 
