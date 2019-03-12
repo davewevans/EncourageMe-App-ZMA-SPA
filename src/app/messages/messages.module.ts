@@ -25,6 +25,8 @@ import { SendMessageSheetComponent } from './send-message-sheet/send-message-she
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { CustomDirectivesModule } from '../custom-directives/custom-directives.module';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   imports: [
@@ -45,7 +47,9 @@ import { CustomDirectivesModule } from '../custom-directives/custom-directives.m
     MatButtonModule,
     InputTextareaModule,
     ButtonModule,
-    CustomDirectivesModule    
+    CustomDirectivesModule,
+    PickerModule,
+    OverlayPanelModule
   ],
   declarations: [
     ReceivedMessagesComponent,

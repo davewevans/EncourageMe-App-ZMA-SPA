@@ -11,6 +11,9 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class SendMessageSheetComponent implements OnInit {
 
+  @ViewChild('textareaEmoji') textareaRef: ElementRef;
+  textareaValue = '';
+
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: SendMessage,
     private bottomSheetRef: MatBottomSheetRef<SendMessageSheetComponent>,
     private dataService: DataService) { }
@@ -50,5 +53,39 @@ export class SendMessageSheetComponent implements OnInit {
     this.bottomSheetRef.dismiss();
     event.preventDefault();
   }
+
+  togglePicker(e, op) {
+    op.toggle(e);
+    this.textareaRef.nativeElement.focus();
+  }
+
+  addEmoji(e) {
+
+    console.log(e.emoji);
+
+    const emojiStr = '0x' + e.emoji.unified.toString();
+    console.log('emoji pic: ' + emojiStr);
+    console.log('emoji hex: ' + (+emojiStr));
+
+    // get current caret position or selection
+    let selectionStart = this.textareaRef.nativeElement.selectionStart;
+    let selectionEnd = this.textareaRef.nativeElement.selectionEnd;
+
+    // insert emoji at caret position
+    const firstPart = this.textareaRef.nativeElement.value.slice(0, selectionStart);
+    const lastPart = this.textareaRef.nativeElement.value.slice(selectionEnd);
+    const textareaParts = [firstPart, e.emoji.native, lastPart];
+    this.data.message = textareaParts.join('');
+
+    this.textareaRef.nativeElement.focus();
+
+    // put the caret after the emoji
+    selectionStart += e.emoji.native.length;
+    selectionEnd += e.emoji.native.length;
+    setTimeout(() => { // necessary to wait on browser
+      this.textareaRef.nativeElement.setSelectionRange(selectionStart, selectionEnd);
+    });
+  }
+
 
 }

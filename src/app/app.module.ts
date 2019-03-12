@@ -54,7 +54,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CustomPipesModule } from './custom-pipes/custom-pipes.module';
 import { EmojifyModule } from 'angular-emojify';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
-
+import { CkeditorTestComponent } from './ckeditor-test/ckeditor-test.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 // Rollbar config
@@ -93,7 +94,8 @@ export class RollbarErrorHandler implements ErrorHandler {
     ColorSchemesComponent,
     ConfirmDialogComponent,
     SnackbarComponent,
-    NgMaterialTestComponent
+    NgMaterialTestComponent,
+    CkeditorTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -135,6 +137,7 @@ export class RollbarErrorHandler implements ErrorHandler {
     CustomPipesModule,
     EmojifyModule,
     EmojiModule,
+    CKEditorModule
   ],
   providers: [
      // {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

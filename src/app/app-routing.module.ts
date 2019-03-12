@@ -8,6 +8,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { PrimengTestComponent } from './primeng-test/primeng-test.component';
 import { ColorSchemesComponent } from './color-schemes/color-schemes.component';
 import { NgMaterialTestComponent } from './ng-material-test/ng-material-test.component';
+import { CkeditorTestComponent } from './ckeditor-test/ckeditor-test.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const appRoutes: Routes = [
     { path: 'dialogtest', component: DialogOverviewExampleDialog },
     { path: 'primeng-test', component: PrimengTestComponent },
     { path: 'ng-material-test', component: NgMaterialTestComponent },
-    { path: 'color-schemes', component: ColorSchemesComponent },    
+    { path: 'color-schemes', component: ColorSchemesComponent },
+    { path: 'ckeditor-test', component: CkeditorTestComponent },
   ];
 
 @NgModule({

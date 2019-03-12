@@ -26,7 +26,11 @@
 <ngx-emoji emoji=':female-teacher::skin-tone-5:' size="16" tooltip="true"></ngx-emoji>
 
 <ngx-emoji emoji=':blush:' size="16" tooltip="true"></ngx-emoji>
+<ngx-emoji emoji=':female_zombie:' set='emojione' size="24"></ngx-emoji>
 
+<div>
+    😎😏🧒🏽👩🏽‍🏫👩🏽‍⚖️👩🏿‍💻💂🏿‍♀️🧜🏿‍♀️🧝🏿‍♀️🗣️💪🏿👠🐨
+</div>
 
 <div class="overlay-panel">
   <p-overlayPanel #op [showCloseIcon]="true">
@@ -38,8 +42,9 @@
         color="#596b37"
         sheetSize="64"
         emoji="point_up"
-        set='google'
-        emojiTooltip="true"
+        set='emojione'
+        native="false"
+        emojiTooltip="true"        
         (emojiClick)="addEmoji($event)">
       </emoji-mart>
     </div>
@@ -50,28 +55,68 @@
     (click)="togglePicker($event, op)">
   </button>
 
+  <span>
+      <!-- <Picker onSelect={this.addEmoji} /> -->
+      </span>
 
 </div>
 <!-- [value]="textareaData | emojify" -->
 <!-- <textarea id="textarea-emoji" #textareaEmoji [innerHTML]="textareaData | safeHtml">
 </textarea> -->
 
-<textarea id="textarea-emoji" #textareaEmoji [value]="textareaData | emojify">
-    
-</textarea>
 
+<div contenteditable="true" 
+      [(innerHTML)]="textareaValue" 
+      cols="50" 
+      rows="10">
+      content editable div
+  </div>
 
-<!-- <div id="divTest" [innerHtml]="textareaData | safeHtml">
+<div>
+  <textarea id="textarea-emoji" 
+  [(ngModel)]="textareaValue" 
+  (ngModelChange)="onModelChanged($event)"
+  rows="10"
+  columns="80"
+  (focus)="onFocus($event)"
+  (change)="onChange($event)"
+  #textareaEmoji> 
   
-</div> -->
-
-<div id="divTest2" ng-bind-html="emojiTest">
-  divTest2
+  <!-- <ngx-emoji emoji=':blush:' size="16" tooltip="true"></ngx-emoji> -->
+  
+  </textarea>
 </div>
 
-<div ng-bind-html="emojiTest">
-    
-  </div>
+<div>
+  <button type="button" (click)="test($event)">
+    Test Button
+  </button>
+</div>
+
+<div>
+  <button type="button" (click)="test2($event)">
+    Test 2 Button
+  </button>
+</div>
+
+<div>
+  <button type="button" (click)="test3($event)">
+    Test 3 Button
+  </button>
+</div>
+
+<br />
+<div id="demo">this is a test!</div> <br />
+
+<textarea id="emojionearea1" [innerHTML]="textareaValue"></textarea><br />
+<p [innerHTML]="testValue"></p>
+<div [innerHTML]="testValue"></div>
+
+
+<input type="text" id="emojionearea2" value="inline :+1:"/><br />
+<div id="emojionearea3">Support autocompleting, insert ":" </div><br />
+<input type="text" id="emojionearea4" value=":smiley_cat:"/><br />
+<textarea id="emojionearea5">Disable tones, disable autocomplete :dog::cat:</textarea><br />
 
 
 <!-- <p [innerHTML]="textareaData | safeHtml"></p>

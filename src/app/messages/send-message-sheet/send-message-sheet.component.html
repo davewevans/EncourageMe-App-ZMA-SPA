@@ -18,20 +18,49 @@
     <div>
       <img [src]="data.profilePhotoUri" class="avatar-100" />
     </div>
+  </div>
 
-    <div>
-      
-      <textarea
-        appAutoFocus rows="10" cols="30"
-        spellcheck="true"        
-        autoResize="vertical" 
-        [(ngModel)]="data.message"
-        type="text" 
-        placeholder="Enter your message">
-      </textarea>
+        <div class="overlay-panel">
+            <p-overlayPanel #op [showCloseIcon]="true">
+
+        <div class="emoji-mart">
+            <emoji-mart title="Pick an emoji"
+              perLine="7"
+              totalFrequentLines="2"
+              color="#596b37"
+              sheetSize="64"
+              emoji="point_up"                           
+              set='google'
+              native="false"
+              emojiTooltip="true"
+              (emojiClick)="addEmoji($event)">
+            </emoji-mart>
+          </div>         
+        </p-overlayPanel>
     </div>
 
-  </div>
+  
+
+<div>
+    <textarea
+    appAutoFocus rows="10" cols="30"
+    spellcheck="true"        
+    autoResize="vertical" 
+    [(ngModel)]="data.message"
+    type="text" 
+    placeholder="Enter your message"
+    #textareaEmoji>
+  </textarea>
+</div>
+
+
+<div>
+  <button type="text" 
+pButton label="Emoji Mart" 
+(click)="togglePicker($event, op)">
+</button>
+</div>
+    
 
 
   <div class="item-d"><button mat-raised-button type="submit"

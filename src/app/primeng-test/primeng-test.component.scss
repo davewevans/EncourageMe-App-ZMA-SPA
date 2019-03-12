@@ -15,6 +15,9 @@
 
 .emoji-mart {
   margin-top: 16px;
+  position: 'absolute';
+  bottom: '20px';
+  right: '20px';
 }
 
 .emoji-mart-header {
@@ -38,6 +41,12 @@
   outline: none;
 }
 
-.overlay-panel {
-  margin-top: 300px;
+.overlay-panel {  
+  position: 'absolute';
+  bottom: '20px';
+  right: '20px';
+}
+
+textarea {
+  font-size: 24px;
 }
